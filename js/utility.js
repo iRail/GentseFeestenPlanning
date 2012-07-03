@@ -1,3 +1,41 @@
+/*
+ * Data
+ */
+var dates = {
+	14 : {
+		name : '14 juli',
+	},
+	15 : {
+		name : '15 juli',
+	},
+	16 : {
+		name : '16 juli',
+	},
+	17 : {
+		name : '17 juli',
+	},
+	18 : {
+		name : '18 juli',
+	},
+	19 : {
+		name : '19 juli',
+	},
+	20 : {
+		name : '20 juli',
+	},
+	21 : {
+		name : '21 juli',
+	},
+	22 : {
+		name : '22 juli',
+	},
+	23 : {
+		name : '23 juli',
+	}
+};
+/*
+ * Get events for specific day
+ */
 function getEvents(day, cbSuccess, cbError) {
 	if (day < 14 || day > 23)
 		cbError("Invalid day requested")
@@ -5,6 +43,10 @@ function getEvents(day, cbSuccess, cbError) {
 	if (!Modernizr.localstorage) {
 		cbError("No localStorage accessible")
 		return
+
+		
+
+				
 
 		
 
@@ -35,6 +77,8 @@ function addFavourite(event, day, cbSucces, cbError) {
 	if (!Modernizr.geolocation) {
 		cbError("No HTML5 geolocation available")
 		return
+
+		
 
 	}
 	if (localStorage['day_' + day + 'favourites'] == undefined) {
@@ -72,6 +116,8 @@ function getLocation(cbSuccess, cbError, cached) {
 	if (!Modernizr.geolocation) {
 		cbError("No HTML5 geolocation available")
 		return
+
+		
 
 	}
 
