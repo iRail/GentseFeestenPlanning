@@ -3,34 +3,44 @@
  */
 var dates = {
 	14 : {
-		name : 'donderdag 14'
+		name : 'donderdag 14',
+		number: 14,
 	},
 	15 : {
-		name : 'vrijdag 15'
+		name : 'vrijdag 15',
+		number: 15,
 	},
 	16 : {
-		name : 'zaterdag 16'
+		name : 'zaterdag 16',
+		number: 16,
 	},
 	17 : {
-		name : 'zondag 17'
+		name : 'zondag 17',
+		number: 17,
 	},
 	18 : {
-		name : 'maandag 18'
+		name : 'maandag 18',
+		number: 18,
 	},
 	19 : {
-		name : 'dinsdag 19'
+		name : 'dinsdag 19',
+		number: 19,
 	},
 	20 : {
-		name : 'woensdag 20'
+		name : 'woensdag 20',
+		number: 20
 	},
 	21 : {
-		name : 'donderdag 21'
+		name : 'donderdag 21',
+		number: 21
 	},
 	22 : {
-		name : 'vrijdag 22'
+		name : 'vrijdag 22',
+		number: 22
 	},
 	23 : {
-		name : 'zaterdag 23'
+		name : 'zaterdag 23',
+		number: 23
 	}
 };
 
@@ -55,6 +65,13 @@ function getEvents(day, cbSuccess, cbError) {
 			dataType : 'json',
 			success : function(data) {
 				// TODO: QUOTA_EXCEEDED, remove previous days?
+				data=data["201207"+day];
+				
+				// adding the id's to the data
+				for(var i=0;i<data.length;i++){
+                                    data[i].id=i;
+				}
+				
 				localStorage.setItem("day_" + day, JSON.stringify(data));
 				cbSuccess(data)
 			}
@@ -62,6 +79,20 @@ function getEvents(day, cbSuccess, cbError) {
 	} else {
 		cbSuccess(cachedData)
 	}
+}
+
+/*
+ * Gets the Id of a given item
+ */
+function getIdOfItem(item){
+    return item.id;
+}
+
+/*
+ * Returns the item for a given id
+ */
+function getItemById(data, id){
+    return data[i];
 }
 
 /*
@@ -85,7 +116,11 @@ function addFavourite(event, day, cbSucces, cbError) {
  * Return favourites for a specific day
  */
 function getFavourites(day, cbSucces, cbError) {
-	return localStorage['day_' + day + 'favourites'];
+	if(localStorage['day_' + day + 'favourites'] != undefined) {
+		return JSON.parse(localStorage['day_' + day + 'favourites']);
+	} else {
+		return [];
+	}
 }
 
 /*
