@@ -130,6 +130,20 @@ function getFavourites(day, cbSucces, cbError) {
 }
 
 /*
+ * Store a value in HTML5 Session Storage and escape it WARNING: Not escaped
+ */
+function setSessionValue(key, value) {
+	sessionStorage[key] = value;
+}
+
+/*
+ * Get a value from HTML5 Session Storage and escape it
+ */
+function getSessionValue(key) {
+	return sessionStorage[key];
+}
+
+/*
  * Fetch geolocation
  */
 function getLocation(cbSuccess, cbError, cached) {
