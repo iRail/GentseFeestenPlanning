@@ -3,34 +3,44 @@
  */
 var dates = {
 	14 : {
-		name : '14 juli',
+		name : 'donderdag 14',
+		number: 14,
 	},
 	15 : {
-		name : '15 juli',
+		name : 'vrijdag 15',
+		number: 15,
 	},
 	16 : {
-		name : '16 juli',
+		name : 'zaterdag 16',
+		number: 16,
 	},
 	17 : {
-		name : '17 juli',
+		name : 'zondag 17',
+		number: 17,
 	},
 	18 : {
-		name : '18 juli',
+		name : 'maandag 18',
+		number: 18,
 	},
 	19 : {
-		name : '19 juli',
+		name : 'dinsdag 19',
+		number: 19,
 	},
 	20 : {
-		name : '20 juli',
+		name : 'woensdag 20',
+		number: 20
 	},
 	21 : {
-		name : '21 juli',
+		name : 'donderdag 21',
+		number: 21
 	},
 	22 : {
-		name : '22 juli',
+		name : 'vrijdag 22',
+		number: 22
 	},
 	23 : {
-		name : '23 juli',
+		name : 'zaterdag 23',
+		number: 23
 	}
 };
 /*
@@ -112,7 +122,11 @@ function addFavourite(event, day, cbSucces, cbError) {
  * Return favourites for a specific day
  */
 function getFavourites(day, cbSucces, cbError) {
-	return localStorage['day_' + day + 'favourites'];
+	if(localStorage['day_' + day + 'favourites'] != undefined) {
+		return JSON.parse(localStorage['day_' + day + 'favourites']);
+	} else {
+		return [];
+	}
 }
 
 /*
