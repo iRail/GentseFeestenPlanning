@@ -1,7 +1,7 @@
 
       var VERTICALSPACE_HOUR=60;//in px;
       //var WIDHT_OF_ELEMENT=100;
-      var MIN_SIZE_OF_ELEMENT=180;
+      var MIN_SIZE_OF_ELEMENT=90;
       
       var PLACE_FOR_HOURS=100;
     
