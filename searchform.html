@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Evenement zoeken</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
+        <script type="text/javascript" src="js/utility.js"></script>
+        <script type="text/javascript">
+			$('document').ready(function() {
+				$.each(dates, function(key, value) {
+					$('<div>').attr({
+						id : 'div' + key
+					}).appendTo('#divHours');
+
+					$('<a>').attr({
+						href : value.page + '.html',
+						id : 'a' + key
+					}).text(value.name).appendTo('#div' + key);
+				});
+			});
+		</script>
+    </head>
+    <body>
+        <div data-role="page">
+
+                <div data-role="header" id="headerbar">
+                        <img src="images/logo_ghent.png" id="headerbarlogo" />
+                        <div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
+                        </div>
+                        <img src="images/lijntje.jpg" id="homeline"/>
+                </div>
+
+                <div data-role="content">
+                        <div class="contentbox">
+                            <form>
+                                Zoek event<br />
+                                <input type="text"><br />
+                                Starttijd event<br />
+                                <select id="divHours">
+                                </select>
+                                <select id="divMinutes">
+                                </select>
+                                <br />
+                                Eindtijd event <br />
+                                <select id="divHours">
+                                </select>
+                                <select id="divMinutes">
+                                </select>
+                                <br />
+                            </form>
+                        </div>
+                </div>
+
+        </div>
+    </body>
+</html>
