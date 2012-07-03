@@ -65,6 +65,13 @@ function getEvents(day, cbSuccess, cbError) {
 			dataType : 'json',
 			success : function(data) {
 				// TODO: QUOTA_EXCEEDED, remove previous days?
+				data=data["201207"+day];
+				
+				// adding the id's to the data
+				for(var i=0;i<data.length;i++){
+                                    data[i].id=i;
+				}
+				
 				localStorage.setItem("day_" + day, JSON.stringify(data));
 				cbSuccess(data)
 			}
@@ -72,6 +79,20 @@ function getEvents(day, cbSuccess, cbError) {
 	} else {
 		cbSuccess(cachedData)
 	}
+}
+
+/*
+ * Gets the Id of a given item
+ */
+function getIdOfItem(item){
+    return item.id;
+}
+
+/*
+ * Returns the item for a given id
+ */
+function getItemById(data, id){
+    return data[i];
 }
 
 /*
