@@ -97,3 +97,37 @@ h2{
 	text-align:center;
 	font-size:16px;
 }
+
+
+/**
+*TIMELINE
+**/
+#timelinediv{
+        position:absolute;
+        top:10px;
+        bottom:10px;
+        left:0px;
+        right:0px;
+		overflow:auto;
+      }
+    
+.timelineobject {
+	position:absolute;
+}
+      
+      /*-- style of an item --*/
+      .timelinebox {
+          overflow:hidden;
+		  -webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);    
+    	  box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+		  background-color: #f9f8f2;
+          position:absolute;
+          margin:3px;
+          padding:4px;
+          top:0px;
+          bottom:0px;
+          left:0px;
+          right:0px;
+          font-size:10pt;
+		  border-radius:5px;
+      }
