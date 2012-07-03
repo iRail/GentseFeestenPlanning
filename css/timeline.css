@@ -30,7 +30,7 @@
       /*-- style of an item --*/
       .timelinebox {
           overflow:hidden;
-          position:relative;
+          position:absolute;
           margin:3px;
           padding:2px;
           border: 1px solid black;
