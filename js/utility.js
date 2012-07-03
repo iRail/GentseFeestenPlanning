@@ -43,7 +43,6 @@ var dates = {
 		number: 23
 	}
 };
-
 /*
  * Get events for specific day
  */
@@ -92,13 +91,20 @@ function getIdOfItem(item){
  * Returns the item for a given id
  */
 function getItemById(data, id){
-    return data[i];
+    return data[id];
 }
 
 /*
  * Adding an event to favourites
  */
 function addFavourite(event, day, cbSucces, cbError) {
+	if (!Modernizr.geolocation) {
+		cbError("No HTML5 geolocation available")
+		return
+
+		
+
+	}
 	if (localStorage['day_' + day + 'favourites'] == undefined) {
 		favouriteEvents = [];
 		favouriteEvents.push(event);
@@ -121,27 +127,6 @@ function getFavourites(day, cbSucces, cbError) {
 	} else {
 		return [];
 	}
-}
-
-/*
- * Delete favourite
- */
-function deleteFavourite(day, cbSucces, cbError) {
-	
-}
-
-/*
- * Store a value in HTML5 Session Storage and escape it WARNING: Not escaped
- */
-function setSessionValue(key, value) {
-	sessionStorage[key] = value;
-}
-
-/*
- * Get a value from HTML5 Session Storage and escape it
- */
-function getSessionValue(key) {
-	return sessionStorage[key];
 }
 
 /*
