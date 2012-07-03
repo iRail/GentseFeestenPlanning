@@ -3,36 +3,37 @@
  */
 var dates = {
 	14 : {
-		name : 'donderdag 14',
+		name : 'donderdag 14'
 	},
 	15 : {
-		name : 'vrijdag 15',
+		name : 'vrijdag 15'
 	},
 	16 : {
-		name : 'zaterdag 16',
+		name : 'zaterdag 16'
 	},
 	17 : {
-		name : 'zondag 17',
+		name : 'zondag 17'
 	},
 	18 : {
-		name : 'maandag 18',
+		name : 'maandag 18'
 	},
 	19 : {
-		name : 'dinsdag 19',
+		name : 'dinsdag 19'
 	},
 	20 : {
-		name : 'woensdag 20',
+		name : 'woensdag 20'
 	},
 	21 : {
-		name : 'donderdag 21',
+		name : 'donderdag 21'
 	},
 	22 : {
-		name : 'vrijdag 22',
+		name : 'vrijdag 22'
 	},
 	23 : {
-		name : 'zaterdag 23',
+		name : 'zaterdag 23'
 	}
 };
+
 /*
  * Get events for specific day
  */
@@ -67,13 +68,6 @@ function getEvents(day, cbSuccess, cbError) {
  * Adding an event to favourites
  */
 function addFavourite(event, day, cbSucces, cbError) {
-	if (!Modernizr.geolocation) {
-		cbError("No HTML5 geolocation available")
-		return
-
-		
-
-	}
 	if (localStorage['day_' + day + 'favourites'] == undefined) {
 		favouriteEvents = [];
 		favouriteEvents.push(event);
@@ -92,6 +86,27 @@ function addFavourite(event, day, cbSucces, cbError) {
  */
 function getFavourites(day, cbSucces, cbError) {
 	return localStorage['day_' + day + 'favourites'];
+}
+
+/*
+ * Delete favourite
+ */
+function deleteFavourite(day, cbSucces, cbError) {
+	
+}
+
+/*
+ * Store a value in HTML5 Session Storage and escape it WARNING: Not escaped
+ */
+function setSessionValue(key, value) {
+	sessionStorage[key] = value;
+}
+
+/*
+ * Get a value from HTML5 Session Storage and escape it
+ */
+function getSessionValue(key) {
+	return sessionStorage[key];
 }
 
 /*
