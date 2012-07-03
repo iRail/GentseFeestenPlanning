@@ -12,14 +12,20 @@
  */
  body{
      background: url('../images/bgbeige.png');
+	 margin:0;
  }
  
 .ui-bar-a { 
     background: url('../images/bgheader.jpg');
 }
 
+h2{
+	font-size:12px;
+}
+
 #headerbar{
     height: 37px;
+	background: url('../images/bgheader.jpg');
 }
 
 #headerbarlogo {
