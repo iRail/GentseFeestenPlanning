@@ -1,0 +1,74 @@
+/* 
+    Document   : main
+    Created on : 3-jul-2012
+    Author     : Jeppe
+    Copyright  : 2012 by iRail vzw/asbl. All rights reserved.
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/**
+ * Headerbar
+ */
+ body{
+     background: url('../images/bgbeige.png');
+ }
+ 
+.ui-bar-a { 
+    background: url('../images/bgheader.jpg');
+}
+
+#headerbar{
+    height: 37px;
+}
+
+#headerbarlogo {
+    float:left;
+    padding-left: 15px;
+}
+
+#homeicon {
+    float:right;
+    padding-top: 6px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#homeline {
+    float:right;
+}
+
+/**
+ * Box with shadow for adding content
+ */
+.contentbox {
+    -webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
+    box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:8px;
+    width: 85%;
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #f9f8f2;
+    border-top: 5px solid #545454;
+    color: #A42434;
+    max-height: 80%;
+    overflow: scroll;
+}
+
+/**
+ * Buttons for the contentbox
+ */
+.buttonbox {
+    -webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);    
+    box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+    background-color: #A42434;
+    color: white;
+    border-radius:5px;
+    padding:8px;
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+}
