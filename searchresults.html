@@ -19,7 +19,7 @@
         var dataSetForDay;
         var day;
         function searchResults(){
-            day=getSessionValue(date);
+            day=getSessionValue("date");
             //temporary
             //getEvents(day, function(){}, function(){});
             //
@@ -43,8 +43,7 @@
         }
         
         function addFavoriteById(id){
-            alert("Adding item with title "+getItemById(dataSetForDay, id).Titel+" to the favorites");
-            addFavorite(getItemById(dataSetForDay, id), day);
+            addFavourite(getItemById(dataSetForDay, id), day);
         }
     
         function createARow(item){
