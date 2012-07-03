@@ -4,33 +4,43 @@
 var dates = {
 	14 : {
 		name : 'donderdag 14',
+		number: 14,
 	},
 	15 : {
 		name : 'vrijdag 15',
+		number: 15,
 	},
 	16 : {
 		name : 'zaterdag 16',
+		number: 16,
 	},
 	17 : {
 		name : 'zondag 17',
+		number: 17,
 	},
 	18 : {
 		name : 'maandag 18',
+		number: 18,
 	},
 	19 : {
 		name : 'dinsdag 19',
+		number: 19,
 	},
 	20 : {
 		name : 'woensdag 20',
+		number: 20
 	},
 	21 : {
 		name : 'donderdag 21',
+		number: 21
 	},
 	22 : {
 		name : 'vrijdag 22',
+		number: 22
 	},
 	23 : {
 		name : 'zaterdag 23',
+		number: 23
 	}
 };
 
@@ -85,7 +95,11 @@ function addFavourite(event, day, cbSucces, cbError) {
  * Return favourites for a specific day
  */
 function getFavourites(day, cbSucces, cbError) {
-	return localStorage['day_' + day + 'favourites'];
+	if(localStorage['day_' + day + 'favourites'] != undefined) {
+		return JSON.parse(localStorage['day_' + day + 'favourites']);
+	} else {
+		return [];
+	}
 }
 
 /*
