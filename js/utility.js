@@ -43,13 +43,6 @@ function getEvents(day, cbSuccess, cbError) {
 	if (!Modernizr.localstorage) {
 		cbError("No localStorage accessible")
 		return
-
-		
-
-				
-
-		
-
 	}
 
 	// Manage current day
