@@ -33,6 +33,7 @@ var dates = {
 		name : '23 juli',
 	}
 };
+
 /*
  * Get events for specific day
  */
@@ -67,13 +68,6 @@ function getEvents(day, cbSuccess, cbError) {
  * Adding an event to favourites
  */
 function addFavourite(event, day, cbSucces, cbError) {
-	if (!Modernizr.geolocation) {
-		cbError("No HTML5 geolocation available")
-		return
-
-		
-
-	}
 	if (localStorage['day_' + day + 'favourites'] == undefined) {
 		favouriteEvents = [];
 		favouriteEvents.push(event);
@@ -92,6 +86,27 @@ function addFavourite(event, day, cbSucces, cbError) {
  */
 function getFavourites(day, cbSucces, cbError) {
 	return localStorage['day_' + day + 'favourites'];
+}
+
+/*
+ * Delete favourite
+ */
+function deleteFavourite(day, cbSucces, cbError) {
+	
+}
+
+/*
+ * Store a value in HTML5 Session Storage and escape it WARNING: Not escaped
+ */
+function setSessionValue(key, value) {
+	sessionStorage[key] = value;
+}
+
+/*
+ * Get a value from HTML5 Session Storage and escape it
+ */
+function getSessionValue(key) {
+	return sessionStorage[key];
 }
 
 /*
