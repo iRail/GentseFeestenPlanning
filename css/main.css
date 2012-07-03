@@ -96,7 +96,7 @@ h2{
 /**
  * Box with shadow for adding content
  */
-.contentbox {
+.contentbox{
     -webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
     box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
     border-bottom-left-radius: 5px;
@@ -198,7 +198,6 @@ h2{
 	height:40px;
     background-color: #A42434;
     color: white;
-	ont-size:29px;
     font-family:'Kenyan';
 	font-size:25px;
 	line-height:1.5em;
@@ -220,3 +219,38 @@ h2{
     border: 1px solid #ccc;
  }
 
+.resultbutton{
+	width:70px;
+	padding:3px;
+	 background-color: #A42434;
+    color: white;
+    font-family:'Kenyan';
+	font-size:19px;
+	line-height:1.6em;
+	text-align:center;
+	text-transform:uppercase;
+	margin-top:5px;
+}
+
+#listdiv {
+    -webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
+    box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:8px;
+    width: 85%;
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #f9f8f2;
+    border-top: 8px solid #545454;
+    color: #A42434;
+}
+ 
+ .resultitem{
+ 	margin-bottom:20px;
+ }
+ 
+ .clearboth{
+ 	clear:both;
+ }
