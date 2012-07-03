@@ -3,34 +3,34 @@
  */
 var dates = {
 	14 : {
-		name : 'donderdag 14',
+		name : 'donderdag 14'
 	},
 	15 : {
-		name : 'vrijdag 15',
+		name : 'vrijdag 15'
 	},
 	16 : {
-		name : 'zaterdag 16',
+		name : 'zaterdag 16'
 	},
 	17 : {
-		name : 'zondag 17',
+		name : 'zondag 17'
 	},
 	18 : {
-		name : 'maandag 18',
+		name : 'maandag 18'
 	},
 	19 : {
-		name : 'dinsdag 19',
+		name : 'dinsdag 19'
 	},
 	20 : {
-		name : 'woensdag 20',
+		name : 'woensdag 20'
 	},
 	21 : {
-		name : 'donderdag 21',
+		name : 'donderdag 21'
 	},
 	22 : {
-		name : 'vrijdag 22',
+		name : 'vrijdag 22'
 	},
 	23 : {
-		name : 'zaterdag 23',
+		name : 'zaterdag 23'
 	}
 };
 
