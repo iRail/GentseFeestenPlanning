@@ -1,3 +1,32 @@
+function getEvents(day, cbSuccess, cbError) {	
+	if (day < 14 || day > 23)
+		cbError("Invalid day requested")
+
+	if (!Modernizr.localstorage) {
+		cbError("No localStorage accessible")
+		return
+	}
+
+	// Manage current day
+	var cachedData = $.parseJSON(localStorage.getItem("day_" + day));
+	if (cachedData == null) {
+		$.ajax({
+			url: 'js/data/' + day + '.json',
+			async:	false,
+			dataType: 'json',
+			success: function(data) {
+				// TODO: QUOTA_EXCEEDED, remove previous days?
+				localStorage.setItem("day_" + day, JSON.stringify(data));
+				cbSuccess(data)
+			}
+		});
+	} else {
+		cbSuccess(cachedData)
+	}
+}
+/*
+ * 
+ */
 function getLocation(cbSuccess, cbError, cached) {
 	if (typeof cached === "undefined")
 		cached = true
@@ -9,7 +38,6 @@ function getLocation(cbSuccess, cbError, cached) {
 	if (!Modernizr.geolocation) {
 		cbError("No HTML5 geolocation available")
 		return
-
 	}
 
 	// Fetch a position
@@ -22,10 +50,10 @@ function getLocation(cbSuccess, cbError, cached) {
 	}, function(error) {
 		switch (error.code) {
 		case error.TIMEOUT:
-			cbError("time-out")
+			cbError("Time-out")
 			break;
 		default:
-			cbError("unknown error")
+			cbError("Unknown error")
 		}
 		;
 	}, {
@@ -48,7 +76,7 @@ function getLocationByAddress(address, cbSuccess, cbError) {
 					results[0].geometry.location.lng(),
 					results[0].formatted_address)
 		} else {
-			cbError("Couldn't fetch location.")
+			cbError("Couldn't fetch location")
 		}
 	});
 }
@@ -63,7 +91,7 @@ function getAddressByLocation(latitude, longitude, cbSuccess, cbError) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			cbSuccess(results[0].formatted_address)
 		} else {
-			cbError("Couldn't fetch location.")
+			cbError("Couldn't fetch location")
 		}
 	});
 }
