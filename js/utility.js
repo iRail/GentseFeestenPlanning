@@ -1,20 +1,23 @@
-function getEvents(day, cbSuccess, cbError) {	
+function getEvents(day, cbSuccess, cbError) {
 	if (day < 14 || day > 23)
 		cbError("Invalid day requested")
 
 	if (!Modernizr.localstorage) {
 		cbError("No localStorage accessible")
 		return
+
+		
+
 	}
 
 	// Manage current day
 	var cachedData = $.parseJSON(localStorage.getItem("day_" + day));
 	if (cachedData == null) {
 		$.ajax({
-			url: 'js/data/' + day + '.json',
-			async:	false,
-			dataType: 'json',
-			success: function(data) {
+			url : 'js/data/' + day + '.json',
+			async : false,
+			dataType : 'json',
+			success : function(data) {
 				// TODO: QUOTA_EXCEEDED, remove previous days?
 				localStorage.setItem("day_" + day, JSON.stringify(data));
 				cbSuccess(data)
@@ -24,10 +27,41 @@ function getEvents(day, cbSuccess, cbError) {
 		cbSuccess(cachedData)
 	}
 }
+
 /*
- * 
+ * Adding an event to favourites
+ */
+function addFavourite(event, day, cbSucces, cbError) {
+	if (!Modernizr.geolocation) {
+		cbError("No HTML5 geolocation available")
+		return
+
+	}
+	if (localStorage['day_' + day + 'favourites'] == undefined) {
+		favouriteEvents = [];
+		favouriteEvents.push(event);
+		localStorage['day_' + day + 'favourites'] = JSON
+				.stringify(favouriteEvents);
+	} else {
+		favouriteEvents = JSON.parse(localStorage['day_' + day + 'favourites']);
+		favouriteEvents.push(event);
+		localStorage['day_' + day + 'favourites'] = JSON
+				.stringify(favouriteEvents);
+	}
+}
+
+/*
+ * Return favourites for a specific day
+ */
+function getFavourites(day, cbSucces, cbError) {
+	return localStorage['day_' + day + 'favourites'];
+}
+
+/*
+ * Fetch geolocation
  */
 function getLocation(cbSuccess, cbError, cached) {
+
 	if (typeof cached === "undefined")
 		cached = true
 	var age = 0
@@ -38,6 +72,7 @@ function getLocation(cbSuccess, cbError, cached) {
 	if (!Modernizr.geolocation) {
 		cbError("No HTML5 geolocation available")
 		return
+
 	}
 
 	// Fetch a position
@@ -94,4 +129,22 @@ function getAddressByLocation(latitude, longitude, cbSuccess, cbError) {
 			cbError("Couldn't fetch location")
 		}
 	});
+}
+
+/*
+ * Auxiliary
+ */
+
+/*
+ * Calculate distance
+ */
+var distance = function(lat1, lat2, lon1, lon2) {
+	var R = 6371; // KM
+	var dLat = (lat2 - lat1) * Math.PI / 180;// Radians
+	var dLon = (lon2 - lon1) * Math.PI / 180;
+	var a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+			+ Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180)
+			* Math.sin(dLon / 2) * Math.sin(dLon / 2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	return R * c;
 }
