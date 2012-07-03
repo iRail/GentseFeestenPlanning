@@ -12,15 +12,17 @@
 		<script type="text/javascript">
 			$('document').ready(function() {
 				$.each(dates, function(key, value) {
-					$('<div>').attr({
-						id : 'div' + key,
-                                                class: 'buttonbox'
-					}).appendTo('#divDates');
-
+					
 					$('<a>').attr({
 						href : value.page + '.html',
 						id : 'a' + key
-					}).text(value.name).appendTo('#div' + key);
+					}).appendTo('#divDates');
+					
+					$('<div>').attr({
+						id : 'div' + key,
+                                                class: 'buttonbox'
+					}).text(value.name).appendTo('#a' + key);
+
 				});
 			});
 		</script>
