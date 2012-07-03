@@ -13,7 +13,8 @@
 			$('document').ready(function() {
 				$.each(dates, function(key, value) {
 					$('<div>').attr({
-						id : 'div' + key
+						id : 'div' + key,
+                                                class: 'buttonbox'
 					}).appendTo('#divDates');
 
 					$('<a>').attr({
