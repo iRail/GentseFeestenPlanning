@@ -162,5 +162,30 @@ h2{
           left:0px;
           right:0px;
           font-size:10pt;
-		  border-radius:5px;
+          border-radius:5px;
       }
+      
+/**
+ * Searchform
+ */
+ 
+ .formtextfield{
+    -webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);    
+    box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+    color: grey;
+    border-radius:5px;
+    padding:8px;
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:10px;
+    text-align:center;
+    font-size:16px;
+ }
+ 
+ .formtext{
+    font-size:29px;
+    font-family:'Kenyan';
+    text-align:left;
+    text-transform:uppercase;
+ }
