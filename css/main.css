@@ -192,3 +192,14 @@ h2{
     text-align:left;
     text-transform:uppercase;
  }
+
+.btn{
+	width:100%;
+	height:40px;
+    background-color: #A42434;
+    color: white;
+	ont-size:29px;
+    font-family:'Kenyan';
+	font-size:25px;
+	line-height:1.5em;
+}
