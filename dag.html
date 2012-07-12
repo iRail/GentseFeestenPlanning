@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Gentse Feesten Planner</title>
+		<title>Datum kiezen</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
@@ -12,7 +12,21 @@
 		<script type="text/javascript" src="js/utility.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-			
+				$.each(dates, function(key, value) {
+					$('<a>').attr({
+						href : 'searchresults.html',
+						id : 'a' + key
+					}).appendTo('#divDates');
+
+					$('#a' + key).click(function() {
+						setSessionValue('date', JSON.stringify(value.number));
+					});
+
+					$('<div>').attr({
+						id : 'div' + key,
+						class : 'buttonbox'
+					}).text(value.name).appendTo('#a' + key);
+				});
 			});
 		</script>
 	</head>
@@ -29,31 +43,9 @@
 			</section>
 
 			<section data-role="content" id="content">
-				<div class="cboxlong">
-					<figure id="logo">
-                    	<img src="images/logo_home.png" alt="Gentse Feesten Planner 2012" />
-                    </figure>
-					<ul id="beginMenu">
-                    	<li class="menu_icon" onclick="window.location.href = 'dag.html'">
-                        	<figure>
-                            	<img src="images/logos/list.png" alt="list" />
-                            </figure>
-                        </li>
-                        <li class="menu_icon" onclick="window.location.href = 'timeline.html'">
-                        	<figure>
-                            	<img src="images/logos/favorites.png" alt="favorite" />
-                            </figure></li>
-                        <li class="menu_icon" onclick="window.location.href = 'live.html'">
-                        	<figure>
-                            	<img src="images/logos/live.png" alt="list" />
-                            </figure></li>
-                        <li class="menu_icon">
-                        	<figure>
-                            	<img src="images/logos/about.png" alt="list" />
-                            </figure>
-                        </li>
-                        <div class="clearboth"></div>
-                    </ul>
+				<div class="contentbox">
+					<h2>Kies een dag om te beginnen plannen</h2>
+					<ul id="divDates"></ul>
 				</div>
 			</section>
 		</section>

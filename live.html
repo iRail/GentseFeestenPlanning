@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Datum kiezen</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
+        <script type="text/javascript" src="js/jtrace.js"></script>
+		<script type="text/javascript" src="js/utility.js"></script>
+		<script type="text/javascript">
+		
+
+			//FILTER DATA
+			function filter(dataSet, long, lat){
+				var filteredData = new Array();
+				
+				$.each(dataSet, function(index, value){
+					
+					var d = distance(Number(value.latitude), Number(lat), Number(value.longitude), Number(long));
+					
+					if(d < 0.10){
+						trace(d);
+						filteredData.push(dataSet);
+					}
+				});
+				
+				return filteredData;
+			}
+			
+			var radius = 0.5;
+			
+			$(document).ready(function() {
+				// Get date to load right events
+				var date = new Date();
+				var day_date = date.getDate();
+				day_date = 14;
+				var data = getEvents2(day_date);
+				getLocation(data);
+			});
+		</script>
+	</head>
+	<body>
+		<section data-role="page">
+
+			<section data-role="header" id="headerbar">
+				<a href="javascript:history.go(-1)"><img src="images/back_icon.png" id="homeicon"></a>
+				<img src="images/lijntje.jpg" id="homeline"/>
+				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
+				</div>
+				<img src="images/lijntje.jpg" id="homeline"/>
+
+			</section>
+
+			<section data-role="content" id="content">
+				<div class="contentbox">
+					<h2>Evenementen in de buurt</h2>
+					<div id="livemap">
+                    
+                    </div>
+				</div>
+			</section>
+		</section>
+	</body>
+</html>
