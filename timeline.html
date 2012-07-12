@@ -103,28 +103,29 @@
   
   	<section id="moreInfo">
     	<section data-role="header" id="headerbar">
-                <a href="javascript:$('#moreInfo').hide();"><img src="images/back_icon.png" id="homeicon"><h3 id="back">timeline</h3></a>
-				<img src="images/lijntje.jpg" id="homeline"/>
-				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
-				</div>
-				<img src="images/lijntje.jpg" id="homeline"/>
-
-			</section>
+    		<a href="javascript:$('#moreInfo').hide();"><img src="images/back_icon.png" id="homeicon"><h3 id="back">timeline</h3></a>
+    		<img src="images/lijntje.jpg" id="homeline"/>
+    		<div onclick="window.location.href = 'index.html'">	<img src="images/home_icon.png" id="homeicon" />
+			</div>
+			<img src="images/lijntje.jpg" id="homeline"/>
+		</section>
 
 			<section id="infocontainer" data-role="content"  data-scroll= "true" overflow:"scroll";>
 				 <div class="cboxlong">
                  	<h2>Hier komt titel</h2>
-                    <div id="line"></div>
-                    <a href="javascript:switchInfo('map');" >map</a>&nbsp;<a href="javascript:switchInfo('info');">info</a>
+                   		<div class="info_menu">
+                   			<a href="javascript:switchInfo('map');" class="info_menu_map">map</a>&nbsp;<a href="javascript:switchInfo('info');" class="info_menu_info">info</a>
+                   			<div class="clearboth"></div>
+                   		</div>
                     <div id="info_container"> 
                         <div id="extra_map">
                         </div>
                         <div id="extra_info">
-                            <h4>Omschrijving</h4>
                             <p>Hier komt een omschrijving</p>
                         </div>
                  	</div>
                  </div>
+
 			</section>
     </section>
   
@@ -136,7 +137,7 @@
 				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
 				</div>
 				<img src="images/lijntje.jpg" id="homeline"/>
-                <a href="searchresults.html" id="dayHeader" class="floatleft" alt="Search"><h3>Voeg evenementen toe &nbsp; +</h3></a>
+                <a href="searchresults.html" id="dayHeader" class="floatleft" alt="Search"><h3>Voeg evenementen toe &nbsp; <i id="plus">+</i></h3></a>
 
 			</section>
 

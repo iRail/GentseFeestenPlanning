@@ -21,6 +21,10 @@
  body{
      background: url('../images/bgbeige.png');
 	 margin:0;
+	 font-family: "Verdana", Helvetica, Arial, Sans-serif;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 14px;
  }
  
 a{
@@ -45,23 +49,25 @@ p{
 	-webkit-margin-after:0;
 }
 
-/*
-@font-face {
-    font-family: 'Kenyan';
-	src:url(KENYC___.TTF);
-	font-weight:100;
-	letter-spacing:1px;
-	text-transform:uppercase;
-}*/
-
 
 @font-face {
-    font-family: 'Kenyan';
+    font-family: 'Londrina';
     src: url('LondrinaSolid-Regular-webfont.eot');
     src: url('LondrinaSolid-Regular-webfont.eot?#iefix') format('embedded-opentype'),
          url('LondrinaSolid-Regular-webfont.woff') format('woff'),
          url('LondrinaSolid-Regular-webfont.ttf') format('truetype'),
          url('LondrinaSolid-Regular-webfont.svg#LondrinaSolidRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bebas';
+    src: url('BebasNeue-webfont.eot');
+    src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BebasNeue-webfont.woff') format('woff'),
+         url('BebasNeue-webfont.ttf') format('truetype'),
+         url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -110,7 +116,7 @@ p{
 
 h2{
 	font-size:29px;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-align:center;
 	letter-spacing:1px;
 }
@@ -128,8 +134,11 @@ h2{
 	float:right;
 	display:block;
 	margin-right:10px;
-	line-height:2.1em;
+	line-height:1.9em;
 	color:#FFF;
+	font-family: "Bebas";
+	letter-spacing: 1px;
+	font-size: 20px;
 }
 
 #headerbar{
@@ -144,6 +153,12 @@ h2{
 #headerbarlogo {
     float:left;
     padding-left: 15px;
+}
+
+#plus{
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20pt;
 }
 
 #homeicon {
@@ -179,7 +194,7 @@ h2{
 	font-size:24px;
 	line-height:3.3em;
 	text-align:center;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-transform:uppercase;
 	letter-spacing:1px;
 	color:#a42434;
@@ -205,7 +220,7 @@ h2{
 	font-size:24px;
 	line-height:1.9em;
 	text-align:center;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-transform:uppercase;
 	letter-spacing:1px;
 }
@@ -267,7 +282,6 @@ h2{
 	border-top: 8px solid #c49a6c;
     padding:8px;
     width: 92%;
-	max-width:960px;
     margin-top: 10px;
     margin-left:auto;
     margin-right:auto;
@@ -287,7 +301,6 @@ h2{
     border-bottom-right-radius: 5px;
     padding:8px;
     width: 92%;
-	max-width:960px;
     margin-top: 10px;
     margin-left:auto;
     margin-right:auto;
@@ -313,7 +326,7 @@ h2{
 	margin-bottom:10px;
 	text-align:center;
 	font-size:18px;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-transform:uppercase;
 	letter-spacing:1px;
 }
@@ -383,19 +396,74 @@ h2{
  			cursor:pointer;
 			position:absolute;
 			top:5px;
-			right:0;
-			width:35px;
-			height:35px;
+			right: 10px;
+			width:20px;
+			height:20px;
 			background-image:url(../images/delete.png);
+			background-size: 18px;
+			background-repeat: none;
  		}
 		
 		.timelineinfo{
 			position:absolute;
 			left:5px;
-			top:5px;
-			width:80%;
+			top: 20px;
+			width: 80%;
+			margin-left: 10px;
+			margin-top: 20px;
+			color: #666;
 		}
-		
+
+			.timelineinfo h4{
+				font-weight: normal;
+				width: 100%;
+				border-top: 1px dashed #BBB;
+				border-bottom: 1px dashed #BBB;
+				padding: 10px 0;
+				font-size: 10pt;
+			}
+
+			.info_menu_map, .info_menu_info{
+				color: #FFF;
+				background-color: #A42434;
+				padding: 5px 10% 5px 20%;
+				font-family: "Bebas";
+				font-size: 24px;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				width: 10%;
+				float: left;
+			}
+
+			.info_menu_info{
+				right: 9%;
+				position: absolute;
+				background-image: url(../images/info_icon.svg);
+				background-repeat: no-repeat;
+				background-position: 10px 10px;
+			}
+
+			.info_menu_map{
+				position: absolute;
+				background-image: url(../images/map_icon.svg);
+				background-repeat: no-repeat;
+				background-position: 10px 10px;
+			}
+
+			.info_menu{
+				width:90%;
+				height: 40px;
+				margin:20px auto 20px auto;
+				display: block;
+			}
+
+
+			.info_menu_map:active,
+			.info_menu_info:active {
+				background-color: white;
+				color: #A42434;
+			}
+
 		h3{
 			float:left;
 			margin:0;
@@ -436,7 +504,7 @@ h2{
 	margin:75px auto 0 auto;
 	width:70%;
 	font-size:29px;
-    font-family:'Kenyan';
+    font-family:'Londrina';
 	color:#fff;
 	letter-spacing:1px;
     text-align:center;
@@ -471,16 +539,15 @@ h2{
 }
 
 #extra_info{
-	padding:5px;
 	color:#6e202a;
-	margin:0 auto;
 	display:none;
+	font-size: 14pt;
 }
 
 #extra_map{
 	height:330px;
 	background-color:#FFF;
-	margin-bottom:30px;
+	margin-bottom:40px;
 }
 
 /*
@@ -491,7 +558,7 @@ h2{
 	margin:15px auto 20px auto;
 	width:80%;
 	font-size:25px;
-    font-family:'Kenyan';
+    font-family:'Londrina';
 	letter-spacing:1px;
 	color:#a42434;
     text-align:center;
@@ -529,7 +596,7 @@ h2{
  
  .formtext, .formtextfield{
     font-size:25px;
-    font-family:'Kenyan';
+    font-family:'Londrina';
     text-align:left;
     text-transform:uppercase;
 	margin-bottom:10px;
@@ -542,11 +609,15 @@ h2{
 	height:40px;
     background-color: #A42434;
 	text-align:center;
-    color: white;
-    font-family:'Kenyan';
+    color: #FFF;
+    font-family:'Londrina';
 	letter-spacing:1px;
 	font-size:25px;
 	line-height:1.9em;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
  .formtext select{
@@ -575,7 +646,7 @@ h2{
 	padding:3px;
 	background-color: #A42434;
     color: white;
-    font-family:'Kenyan';
+    font-family:'Londrina';
 	letter-spacing:1px;
 	font-size:17px;
 	line-height:1.6em;
@@ -595,16 +666,4 @@ h2{
 #divDates{
 	padding:0;
 	margin:0 auto;
-}
-
-
-/*
-* LIVE
-*/
-#livemap{
-	width:90%;
-	height:300px;
-	background-color:#FFF;
-	margin:0 auto;
-	margin-bottom:20px;
 }
