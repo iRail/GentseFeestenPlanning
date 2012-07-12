@@ -9,7 +9,6 @@
 /* lijntje welk uur het is
 /* DAY PICKER HIGHER ON S2,...
 /* search on date?
-/* if plaats bestaat pas plaats toevoegen
 /* datum op map onderaan
 /* pagina met info via hashtag
 /* LIVE -> dag juist zetten, else enkel van...
@@ -564,7 +563,7 @@ function setMap(data, div){
         shadowSize : null,
         iconAnchor : new L.Point(16, 35)})
         
-    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+    	var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
         marker.setIcon(new MyIcon);
 		// WHAT IN THE POPUP
 		var string = "<h1>" + data.Begin + " - " + data.Einde + "</h1><p>"+"<img src='images/map_icon.png' class='map_icon'><div id='locatie'><p>" + data.Plaats +"</p><p>"+ data.Straat + " " + data.Huisnr +"</p></div></div><p class='omschrijving'>" + data.Omschrijving + "</p>";
@@ -665,6 +664,8 @@ function afterTimelineDelete(favorites){
 
 // LOAD EVENTS BY DAY FOR DAY-MENU IN TIMELINE
 function getEventsByDay(_day, sday){
+	$("#moreInfo").hide();
+	$("#body").show();
 	setSessionValue("date",_day);
 	day = _day;
 	setDateOnMenu(sday);
@@ -672,20 +673,31 @@ function getEventsByDay(_day, sday){
 	setTimeline(day);
 }
 
+// LOAD EVENTS BY DAY FOR DAY-MENU IN TIMELINE
+function getEventsByDay2(_day, sday){
+	setSessionValue("date", _day);
+	window.location.href = 'timeline.html';
+}
+
 // FUNCTION FOR THE DAY CHOOSER IN TIMELINE
 function dayChooser(){
+	
 	if($("#mask").length){
 		$("#daychooser").css("background-position","center 0");
+		$("#daychooser2").css("background-position","center 0");
 		$("#mask").remove();
 		$("#hiddenDates").hide();
+		$("#hiddenDates2").hide();
 		$("#footer").animate({"height":"53"},300);
 	}
 	else{
 		$("#daychooser").css("background-position","center 53px");
+		$("#daychooser2").css("background-position","center 53px");
 		var height = $("#hiddenDates").height() + 90;
 		$("#body").append("<div id='mask'></div>");
 		$("#footer").animate({"height":height},300);
 		$("#hiddenDates").show();
+		$("#hiddenDates2").show();
 	}
 }
 

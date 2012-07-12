@@ -23,10 +23,13 @@
 				var filteredData = new Array();
 				var time = new Date();
 				var currentTime = time.getHours() + "" + twoDigits(time.getMinutes());
+				
+				console.log(currentTime);
+				
 				if(currentTime < 600){
 					currentTime += 2400;
 				}
-				
+			
 				
 				$.each(dataSet, function(index, value){
 					
@@ -53,10 +56,16 @@
 			var map;
 			
 			$(document).ready(function() {
+				// SET MAP
 				map = new L.Map(livemap).setView(new L.LatLng(51.050729,3.724022), 13);
 				wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
 					map.addLayer(new wax.leaf.connector(tilejson));
 				});
+				
+				// SET CANVAS OF MAP HEIGHT
+				var docheight = $(document).height();
+				var mapheight = docheight * 0.6;
+				$("#livemap").height(mapheight);
 				// Get date to load right events
 				var date = new Date();
 				var day_date = date.getDate();
@@ -65,7 +74,12 @@
 				getLocation(data, 'events');
 			});
 			
-		
+			$(window).resize(function(){
+				// SET CANVAS HEIGHT
+				var docheight = $(document).height();
+				var mapheight = docheight * 0.6;
+				$("#livemap").height(mapheight);
+			});
 		</script>
 	</head>
 	<body>

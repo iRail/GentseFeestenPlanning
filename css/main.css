@@ -49,6 +49,11 @@ p{
 	-webkit-margin-after:0;
 }
 
+h1{
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+}
+
 
 @font-face {
     font-family: 'Londrina';
@@ -182,7 +187,7 @@ h2{
 	bottom:0;
 	left:0;
 	right:0;
-	z-index:2000;
+	z-index:200000;
 }
 
 #daychooser{
@@ -205,8 +210,10 @@ h2{
 #hiddenDates{
 	display:none;
 	width:70%;
-	padding-top:20px;
+	padding-top:5px;
 	padding-bottom:20px;
+	border-top:7px solid #c49a6c;
+	border-radius: 5px 5px 0 0;
 	height:auto;
 	margin:0 auto;
 	z-index:20001;
@@ -218,27 +225,29 @@ h2{
 	width:100%;
 	height:30px;
 	font-size:24px;
-	line-height:1.9em;
+	line-height:1.5em;
 	text-align:center;
 	font-family:'Londrina';
 	text-transform:uppercase;
 	letter-spacing:1px;
+	padding-bottom:2px;
+	border-bottom: 1px dashed #c49a6c;
 }
 
 #logo{
-	height:117px;
-	width:141px;
+	height:111px;
+	width:135px;
 	margin:0 auto;
 }
 
 #logo img{
-	height:117px;
-	width:141px;
+	height:111px;
+	width:135px;
 }
 
 #beginMenu{
 	width:90%;
-	margin:20px auto 0 auto;
+	margin:7px auto 0 auto;
 }
 
 .menu_icon{
@@ -251,6 +260,17 @@ h2{
     box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
 	border-radius:5px;
 	list-style-type:none;
+	text-align:center;
+	color:#FFF;
+}
+
+.menu_icon h1{
+	margin-top:7px;
+	color:#DDDAC7;
+	font-family:'Londrina';
+	font-weight:normal;
+	font-style:16px;
+	text-transform:uppercase;
 }
 
 .menu_icon:nth-child(2n+1){
@@ -260,7 +280,7 @@ h2{
 .menu_icon figure{
 	width:78px;
 	height:78px;
-	padding-top:20px;
+	padding-top:10px;
 	margin:0 auto;
 }
 

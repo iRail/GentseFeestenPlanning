@@ -24,9 +24,22 @@
 				wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
 					map.addLayer(new wax.leaf.connector(tilejson));
 				});
+				
+				// SET CANVAS OF MAP HEIGHT
+				var docheight = $(document).height();
+				var mapheight = docheight * 0.6;
+				$("#toiletmap").height(mapheight);
+				
 				// Get date to load right events
 				var data = getToilets();
 				getLocation(data, 'toilets');
+			});
+			
+			$(window).resize(function(){
+				// SET CANVAS HEIGHT
+				var docheight = $(document).height();
+				var mapheight = docheight * 0.6;
+				$("#toiletmap").height(mapheight);
 			});
 		</script>
 	</head>
@@ -45,6 +58,7 @@
 			<section data-role="content" id="content">
 				<div class="contentbox">
 					<h2>Toiletten in de buurt</h2>
+                    <p>Klik op de icoontjes voor meer informatie</p>
 					<div id="toiletmap">
                     
                     </div>
