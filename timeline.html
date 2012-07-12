@@ -1,56 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Dag</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content="width=device-width,initial-scale=1" name="viewport">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+    <meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	
 	<link rel="stylesheet" href="css/main.css" />
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
+    <!-- GOOGLE MAPS API -->
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAAFpaaPlxwvvKDakpfejDlxjY1Kr09X5w&sensor=false">
+    </script>
     <script type="text/javascript" src="js/timeline/timelinelayout.js"></script>
     <script type="text/javascript" src="js/utility.js"></script>
     <script type="text/javascript">
     
-      
-      function timelineDisplayForObject(favorite, posTop, posLeft, height, width){
+      // SETS EVENTS ON TIMELINE
+      function timelineDisplayForObject(favorite, posTop, posLeft, height, width, id){
           return "<div class='timelineobject' "+
-            "style='top:"+posTop+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;'><div class='timelinebox'>"+
-            favorite.Titel+
-            "</div></div>";
+            "style='top:"+(posTop+10)+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;'><div class='timelinebox d" + id + "'>"+
+            "<div class='timelineinfo'>"+
+			"<h4 onclick='getInfo("+day+', "id", '+ id + ", timelineInfo)' " + ">" + favorite.Titel+
+			"</h4></div><div class='deleteBtn' onclick='deleteFavourite(" + id + ")'></div>" +
+            "</div>"
+			+"</div>";
       }
       
+	  // SETS HOURS ON TIMELINE
       function timelineDisplayForTime(timeString, hour, min, posTop){
           return "<div class='timelinetime' "+
-            "style='top:"+(posTop-10)+"px;left:"+0+"px;width:"+PLACE_FOR_HOURS+"px;height:"+20+"px;'><div class='timelinetimebox'>"+
-            favorite.Titel+
+            "style='top:"+(posTop)+"px;left:"+8+"px;height:"+20+"px;'><div class='timelinetimebox'>"+
+            setTimeDigits(timeString)+
             "</div></div>";
       }
       
-      var date = $.parseJSON(getSessionValue('date'));
-      
-      			getEvents(
-				date,
+	  
+	var day;
+	var longitude;
+	var latitude;  
+	  
+	// ON LOAD
+	$(window).load(function(){
+      	getEvents(day,
 				function(iEvents) {
-					mEvents = iEvents	
+					
 					//populateEventList();
 				},
 				function(error) {
 					alert(error);
-			});
+		});
+		
+      	if(!getSessionValue('date')){
+		setSessionValue("date","14");
+		}
+		day = $.parseJSON(getSessionValue('date'));
+
+	
+		setDates(day);
+		setTimeline(day);
+		
+	});
    </script>
    <script type="text/javascript">
    
-      // HOW TO USE
-      $(function(){
-        //SOME DATA
-        
-        var favorites = getFavourites(date);
-        
-        //CALL
-        updateTimeline(favorites);
-      });
+      	// HOW TO USE
+      	function setTimeline(day){
+        	//SOME DATA
+        	$("#timelinediv").empty();
+			
+        	var favorites = getFavourites(day);
+        	if(favorites == undefined){
+				favorites = [];
+			}
+			// IF FAVORITES EXISTS, ADD THEM TO TIMELINE
+			checkIfTimelineDataExists(favorites);
+		
+	  };
+	  
+	  // SETS THE DATES IN THE HIDDEN CONTAINER FOR THE BOTTOM MENU
+	  function setDates(day){
+	  	$.each(dates, function(key, value) {
+					$('<a>').attr({
+						href : '#',
+						id : 'a' + key,
+						onClick : 'getEventsByDay(' + key + ', "' + value.sname + '");'
+					}).text(value.sname).appendTo('#hiddenDates');
+					// SETS BOTTOM DATE TO THE RIGHT VALUE
+					if(key == day){
+						setDateOnMenu(value.sname);
+					}
+				});
+	  }
       
     </script>
     <style type="text/css">
@@ -58,27 +100,60 @@
     </style>
   </head>
   <body>
-    <div data-role="page">
+  
+  	<section id="moreInfo">
+    	<section data-role="header" id="headerbar">
+    		<a href="javascript:$('#moreInfo').hide();"><img src="images/back_icon.png" id="homeicon"><h3 id="back">timeline</h3></a>
+    		<img src="images/lijntje.jpg" id="homeline"/>
+    		<div onclick="window.location.href = 'index.html'">	<img src="images/home_icon.png" id="homeicon" />
+			</div>
+			<img src="images/lijntje.jpg" id="homeline"/>
+		</section>
 
-			<div data-role="header" id="headerbar">
-				<img src="images/logo_ghent.png" id="headerbarlogo" />
+			<section id="infocontainer" data-role="content"  data-scroll= "true" overflow:"scroll";>
+				 <div class="cboxlong">
+                 	<h2>Hier komt titel</h2>
+                   		<div class="info_menu">
+                   			<a href="javascript:switchInfo('map');" class="info_menu_map">map</a>&nbsp;<a href="javascript:switchInfo('info');" class="info_menu_info">info</a>
+                   			<div class="clearboth"></div>
+                   		</div>
+                    <div id="info_container"> 
+                        <div id="extra_map">
+                        </div>
+                        <div id="extra_info">
+                            <p>Hier komt een omschrijving</p>
+                        </div>
+                 	</div>
+                 </div>
+
+			</section>
+    </section>
+  
+    <section data-role="page" id="body">
+
+			<section data-role="header" id="headerbar">
+                <a href="javascript:history.go(-1)"><img src="images/back_icon.png" id="homeicon"></a>
+				<img src="images/lijntje.jpg" id="homeline"/>
 				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
 				</div>
 				<img src="images/lijntje.jpg" id="homeline"/>
+                <a href="searchresults.html" id="dayHeader" class="floatleft" alt="Search"><h3>Voeg evenementen toe &nbsp; <i id="plus">+</i></h3></a>
 
-			</div>
+			</section>
 
-			<div data-role="content">
+			<section id="timelinecontainer" data-role="content"  data-scroll= "true" overflow:"scroll";>
 				 <div id="timelinediv">
-      
-    			</div>
-			</div>
+                 </div>
+                 <div id="timesdiv">
+                 </div>
+			</section>
             
-            <div id="footer" data-role="footer" data-position="fixed">
-                <a href="searchform.html" alt="Search">Voeg evenementen toe!</a>
-            </div>
+            <section id="footer" data-role="footer" class="fade ui-sticky-footer" data-position="fixed">
+                <div id="daychooser" onclick='dayChooser();'></div>
+                <div id="hiddenDates"></div>
+            </section>
 
-		</div>
+	</section>
 	
   </body>
 </html>

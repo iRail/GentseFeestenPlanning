@@ -1,11 +1,19 @@
 /* 
     Document   : main
     Created on : 3-jul-2012
-    Author     : Jeppe
+    Author     : Team1
     Copyright  : 2012 by iRail vzw/asbl. All rights reserved.
     Description:
         Purpose of the stylesheet follows.
 */
+
+/*
+	**GENERAL INFO**
+	Main color	: 	red				#a42434
+	2nd color	: 	darker red  	#6e202a
+	Extra color	: 	grey 	 		#545454
+*/
+
 
 /**
  * Headerbar
@@ -13,6 +21,10 @@
  body{
      background: url('../images/bgbeige.png');
 	 margin:0;
+	 font-family: "Verdana", Helvetica, Arial, Sans-serif;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 14px;
  }
  
 a{
@@ -20,38 +32,122 @@ a{
 	color:inherit;
 }
 
+/**
+* RESET CSS
+*/
+
+figure{
+	display: block;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+}
+
+p{
+	-webkit-margin-before:0;
+	-webkit-margin-after:0;
+}
+
+
 @font-face {
-    font-family: 'Kenyan';
-	src:url(KENYC___.TTF);
-	font-weight:100;
-	letter-spacing:0.1em;
-	text-transform:uppercase;
+    font-family: 'Londrina';
+    src: url('LondrinaSolid-Regular-webfont.eot');
+    src: url('LondrinaSolid-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('LondrinaSolid-Regular-webfont.woff') format('woff'),
+         url('LondrinaSolid-Regular-webfont.ttf') format('truetype'),
+         url('LondrinaSolid-Regular-webfont.svg#LondrinaSolidRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bebas';
+    src: url('BebasNeue-webfont.eot');
+    src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('BebasNeue-webfont.woff') format('woff'),
+         url('BebasNeue-webfont.ttf') format('truetype'),
+         url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
  
  ul, menu, dir {
-display: block;
-list-style-type: disc;
--webkit-margin-before: 0;
--webkit-margin-after: 0;
--webkit-margin-start: 0;
--webkit-margin-end: 0;
--webkit-padding-start: 0;
+	display: block;
+	list-style-type: none;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+	-webkit-padding-start: 0;
+	padding:0;
 }
+
+/**
+* BASIC STYLES
+*/
+
+.floatleft{
+	float:left;
+}
+
+.clearboth{
+ 	clear:both;
+ }
  
+ #mask{
+ 	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background-color:rgba(20, 20, 20, 0.7);
+ }
+ 
+ 
+/**
+* STYLE
+*/
+
 .ui-bar-a { 
     background: url('../images/bgheader.jpg');
 }
 
 h2{
 	font-size:29px;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-align:center;
-	text-transform:uppercase;
+	letter-spacing:1px;
+}
+
+#day{
+	font-size:26px;
+	width:30%;
+	margin:0;
+	text-align:left;
+	float:left;
+	line-height:1.9em;
+}
+
+#dayHeader{
+	float:right;
+	display:block;
+	margin-right:10px;
+	line-height:1.9em;
+	color:#FFF;
+	font-family: "Bebas";
+	letter-spacing: 1px;
+	font-size: 20px;
 }
 
 #headerbar{
-    height: 37px;
+    height: 38px;
 	background: url('../images/bgheader.jpg');
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
 }
 
 #headerbarlogo {
@@ -59,59 +155,160 @@ h2{
     padding-left: 15px;
 }
 
+#plus{
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20pt;
+}
+
 #homeicon {
-    float:right;
+    float:left;
     padding-top: 6px;
     padding-right: 15px;
     padding-left: 15px;
 }
 
 #homeline {
-    float:right;
+    float:left;
 }
 
+#content, #infocontainer{
+	margin-top:50px;
+}
 
 #footer{
 	position:fixed;
-	height:40px;
-	background-color:#a42434;
+	height:53px;
 	bottom:0;
 	left:0;
 	right:0;
-	color:#FFF;
+	z-index:2000;
+}
+
+#daychooser{
+	margin:0 auto;
+	height:53px;
+	width:166px;
+	background-image:url(../images/bottomLogo.png);
+	background-position:center 0;
+	font-size:24px;
+	line-height:3.3em;
+	text-align:center;
+	font-family:'Londrina';
+	text-transform:uppercase;
+	letter-spacing:1px;
+	color:#a42434;
+	z-index:2000;
+	cursor:pointer;
+}
+
+#hiddenDates{
+	display:none;
+	width:70%;
+	padding-top:20px;
+	padding-bottom:20px;
+	height:auto;
+	margin:0 auto;
+	z-index:20001;
+	background-image:url(../images/bgheader2.jpg);
 }
 
 #footer a{
 	display:block;
 	width:100%;
-	height:100%;
+	height:30px;
 	font-size:24px;
 	line-height:1.9em;
 	text-align:center;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-transform:uppercase;
-	letter-spacing:0.1em;
+	letter-spacing:1px;
 }
 
+#logo{
+	height:117px;
+	width:141px;
+	margin:0 auto;
+}
+
+#logo img{
+	height:117px;
+	width:141px;
+}
+
+#beginMenu{
+	width:90%;
+	margin:20px auto 0 auto;
+}
+
+.menu_icon{
+	width:46%;
+	background-color:#a42434;
+	height:120px;
+	float:left;
+	margin-bottom:20px;
+	-webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
+    box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+	border-radius:5px;
+	list-style-type:none;
+}
+
+.menu_icon:nth-child(2n+1){
+	margin-right:8%;
+}
+
+.menu_icon figure{
+	width:78px;
+	height:78px;
+	padding-top:20px;
+	margin:0 auto;
+}
+
+.menu_icon img{
+	width:78px;
+	height:78px;
+	margin:0 auto;
+}
+
+
 /**
- * Box with shadow for adding content
+ * Box with shadow for adding content, 80% of height device
  */
 .contentbox{
     -webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
     box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+	border-top: 8px solid #c49a6c;
     padding:8px;
-    width: 85%;
+    width: 92%;
     margin-top: 10px;
     margin-left:auto;
     margin-right:auto;
-    background-color: #f9f8f2;
-    border-top: 8px solid #545454;
+    background-image:url(../images/bgheader2.jpg);
     color: #A42434;
-    max-height: 80%;
+    min-height: 90%;
 }
 
+.live{
+	margin-top:50px;
+}
+
+.cboxlong{
+	-webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
+    box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding:8px;
+    width: 92%;
+    margin-top: 10px;
+    margin-left:auto;
+    margin-right:auto;
+	margin-bottom:30px;
+   	background-image:url(../images/bgheader2.jpg);
+    border-top: 8px solid #c49a6c;
+    color: #A42434;
+}
 
 /**
  * Buttons for the contentbox
@@ -129,45 +326,251 @@ h2{
 	margin-bottom:10px;
 	text-align:center;
 	font-size:18px;
-	font-family:'Kenyan';
+	font-family:'Londrina';
 	text-transform:uppercase;
-	letter-spacing:0.1em;
+	letter-spacing:1px;
 }
 
 
 /**
 *TIMELINE
 **/
+
+#timelinecontainer{
+	position:absolute;
+	left:0;
+	right:0;
+	top:38px;
+    bottom:45px;
+}
+
 #timelinediv{
         position:absolute;
-        top:40px;
-        bottom:10px;
+        top:5px;
+        bottom:0;
         left:0px;
         right:0px;
 		overflow:auto;
       }
-    
+
+#timesdiv{
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:0;
+		overflow:auto;
+		width:39px;
+		padding-right:5px;
+		padding-left:10px;
+		border-right:1px solid #AAA;
+      }
+
 .timelineobject {
 	position:absolute;
 }
       
-      /*-- style of an item --*/
-      .timelinebox {
-          overflow:hidden;
-		  -webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);    
-    	  box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
-		  background-color: #f9f8f2;
-          position:absolute;
-          margin:3px;
-          padding:4px;
-          top:0px;
-          bottom:0px;
-          left:0px;
-          right:0px;
-          font-size:10pt;
-          border-radius:5px;
-      }
-      
+      	/*-- style of an item --*/
+      	.timelinebox {
+			overflow:hidden;
+			-webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+			box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+			position:absolute;
+			padding:4px;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			margin-right:5px;
+			margin-left:5px;
+			margin-bottom:5px;
+			/*margin:0 auto;
+			height:85%;*/
+			font-size:11pt;
+			background-image:url(../images/bgheader2.jpg);
+			border-bottom-left-radius: 5px;
+    		border-bottom-right-radius: 5px;
+			border-top: 8px solid #c49a6c;
+      	}
+	  
+	   .deleteBtn{
+ 			cursor:pointer;
+			position:absolute;
+			top:5px;
+			right: 10px;
+			width:20px;
+			height:20px;
+			background-image:url(../images/delete.png);
+			background-size: 18px;
+			background-repeat: none;
+ 		}
+		
+		.timelineinfo{
+			position:absolute;
+			left:5px;
+			top: 20px;
+			width: 80%;
+			margin-left: 10px;
+			margin-top: 20px;
+			color: #666;
+		}
+
+			.timelineinfo h4{
+				font-weight: normal;
+				width: 100%;
+				border-top: 1px dashed #BBB;
+				border-bottom: 1px dashed #BBB;
+				padding: 10px 0;
+				font-size: 10pt;
+			}
+
+			.info_menu_map, .info_menu_info{
+				color: #FFF;
+				background-color: #A42434;
+				padding: 5px 10% 5px 20%;
+				font-family: "Bebas";
+				font-size: 24px;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				width: 10%;
+				float: left;
+			}
+
+			.info_menu_info{
+				right: 9%;
+				position: absolute;
+				background-image: url(../images/info_icon.svg);
+				background-repeat: no-repeat;
+				background-position: 10px 10px;
+			}
+
+			.info_menu_map{
+				position: absolute;
+				background-image: url(../images/map_icon.svg);
+				background-repeat: no-repeat;
+				background-position: 10px 10px;
+			}
+
+			.info_menu{
+				width:90%;
+				height: 40px;
+				margin:20px auto 20px auto;
+				display: block;
+			}
+
+
+			.info_menu_map:active,
+			.info_menu_info:active {
+				background-color: white;
+				color: #A42434;
+			}
+
+		h3{
+			float:left;
+			margin:0;
+			font-size:1.2em;
+			font-weight:normal;
+		}
+
+#back{
+	line-height:1.9em;
+	color:#FFF;
+	padding-right:10px;
+	margin-left:-15px;
+}
+
+#listdiv {
+    width: 100%;
+	height:auto;
+}
+
+	.timelinetime{
+		position:absolute;
+		text-align:right;
+		width:35px;
+		color:#FFF;
+	}
+ 
+	.resultitem{
+		width:96%;
+		padding:2%;
+ 		margin-bottom:20px;
+ 	}
+ 	
+	.resultitem:nth-child(2n){
+		background-color:rgba(230,230,230,0.4);
+	}
+ 
+ .error{
+	margin:75px auto 0 auto;
+	width:70%;
+	font-size:29px;
+    font-family:'Londrina';
+	color:#fff;
+	letter-spacing:1px;
+    text-align:center;
+}
+
+/*
+* Timeline more info panel
+*/
+
+#moreInfo{
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	 background: url('../images/bgbeige.png');
+	display:none;
+	z-index:50000;
+}
+
+#line{
+	width:98%;
+	height:1px;
+	border-bottom:4px solid #a42434;
+	margin:-20px auto 0 auto;
+}
+
+#info_container{
+	width:90%;
+	height:auto;
+	margin:20px auto 0 auto;
+}
+
+#extra_info{
+	color:#6e202a;
+	display:none;
+	font-size: 14pt;
+}
+
+#extra_map{
+	height:330px;
+	background-color:#FFF;
+	margin-bottom:40px;
+}
+
+/*
+* Searchresults
+*/
+
+.nosearchresults{
+	margin:15px auto 20px auto;
+	width:80%;
+	font-size:25px;
+    font-family:'Londrina';
+	letter-spacing:1px;
+	color:#a42434;
+    text-align:center;
+    text-transform:none;
+}
+
+#errorImg{
+	width:142px;
+	height:142px;
+	margin:0 auto;
+}
+ 
 /**
  * Searchform
  */
@@ -175,32 +578,46 @@ h2{
  .formtextfield{
     -webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);    
     box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
-    color: grey;
+    color: #333;
     border-radius:5px;
-    padding:8px;
+    padding:4px;
     width: 80%;
     margin-left:auto;
     margin-right:auto;
     margin-bottom:10px;
     text-align:center;
-    font-size:16px;
+    font-size:15px;
+ }
+ 
+ .small{
+ 	width:70%;
+	float:left;
  }
  
  .formtext, .formtextfield{
-    font-size:29px;
-    font-family:'Kenyan';
+    font-size:25px;
+    font-family:'Londrina';
     text-align:left;
     text-transform:uppercase;
+	margin-bottom:10px;
  }
 
+
 .btn{
+	display:block;
 	width:100%;
 	height:40px;
     background-color: #A42434;
-    color: white;
-    font-family:'Kenyan';
+	text-align:center;
+    color: #FFF;
+    font-family:'Londrina';
+	letter-spacing:1px;
 	font-size:25px;
-	line-height:1.5em;
+	line-height:1.9em;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
  .formtext select{
@@ -210,7 +627,7 @@ h2{
     border-radius:5px;
     padding:8px;
     margin-left:auto;
-    margin-right:auto;
+    margin-right:10px;
     margin-bottom:10px;
     text-align:center;
     font-size:16px;
@@ -218,39 +635,35 @@ h2{
     width: 20%;
     border: 1px solid #ccc;
  }
+ 
+ .resultinfo{
+ 	width:70%;
+	float:left;
+ }
 
 .resultbutton{
-	width:70px;
+	width:90px;
 	padding:3px;
-	 background-color: #A42434;
+	background-color: #A42434;
     color: white;
-    font-family:'Kenyan';
-	font-size:19px;
+    font-family:'Londrina';
+	letter-spacing:1px;
+	font-size:17px;
 	line-height:1.6em;
 	text-align:center;
 	text-transform:uppercase;
 	margin-top:5px;
+	cursor:pointer;
+	float:right;
 }
 
-#listdiv {
-    -webkit-box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);    
-    box-shadow:  1px 1px 4px 1px rgba(0, 0, 0, 0.3);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding:8px;
-    width: 85%;
-    margin-top: 10px;
-    margin-left:auto;
-    margin-right:auto;
-    background-color: #f9f8f2;
-    border-top: 8px solid #545454;
-    color: #A42434;
+.added{
+	background-color: #ccc;
+	color:#333;
+	cursor:default;
 }
- 
- .resultitem{
- 	margin-bottom:20px;
- }
- 
- .clearboth{
- 	clear:both;
- }
+
+#divDates{
+	padding:0;
+	margin:0 auto;
+}

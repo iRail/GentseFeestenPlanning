@@ -1,9 +1,12 @@
 
-      var VERTICALSPACE_HOUR=60;//in px;
+      var VERTICALSPACE_HOUR=80;//in px;
       //var WIDHT_OF_ELEMENT=100;
       var MIN_SIZE_OF_ELEMENT=90;
+	  var MAX_SIZE_OF_ELEMENT=300;
       
-      var PLACE_FOR_HOURS=100;
+      var PLACE_FOR_HOURS=55;
+	  
+	  var H_MARGIN=15;
     
       /**
       * favorites = array of objects
@@ -25,7 +28,8 @@
           $.each(favorites, function(favIndex, favorite){
               var startInt=numberForDayHour(favorite.Datum, favorite.Begin)-lowerInt;
               var endInt=numberForDayHour(favorite.Datum, favorite.Einde)-lowerInt;
-              
+             
+			  
               if(endInt<startInt){endInt=endInt+24*60;/* eindigt na middernacht...*/}
               
               //save to favorite
@@ -70,26 +74,30 @@
           
           //there are x columns and we have y space... -> ...
           var columnCount = multipleSameTimeArray.length;
-          var spaceInComponent = $('#timelinediv').innerWidth()-PLACE_FOR_HOURS;
+          var spaceInComponent = $('#timelinediv').innerWidth()-PLACE_FOR_HOURS-H_MARGIN;
           var spacePerColumn=spaceInComponent/columnCount;
           if(spacePerColumn<MIN_SIZE_OF_ELEMENT){
               spacePerColumn=MIN_SIZE_OF_ELEMENT;
           }
+		  else if(spacePerColumn>MAX_SIZE_OF_ELEMENT){
+		  	spacePerColumn=MAX_SIZE_OF_ELEMENT;
+		  }
           
           //now place them in the webpage
           $.each(favorites, function(favIndex, favorite){
               var startInt=favorite.numberStartInt;
               var endInt=favorite.numberEndInt;
               var placedColumn=favorite.placedInColumn;
+			  var id = favorite.id;
           
               //alert("size in hours:"+((endInt-startInt)/60));
               
               var objectHtmlString=timelineDisplayForObject(
                   favorite, 
-                  PLACE_FOR_HOURS+startInt*VERTICALSPACE_HOUR/60, 
-                  spacePerColumn*placedColumn, 
+                  startInt*VERTICALSPACE_HOUR/60, 
+                  PLACE_FOR_HOURS+spacePerColumn*placedColumn, 
                   (endInt-startInt)*VERTICALSPACE_HOUR/60, 
-                  spacePerColumn);
+                  spacePerColumn, id);
               
               var htmlObject=$(objectHtmlString);
               
@@ -97,17 +105,19 @@
            });
            
            //add hours to the schema
-           var EVERY=15;
+           var EVERY=30;
            var lastDone=undefined;
            var startHourDisplay=Math.floor(lowerInt/EVERY)*EVERY;
-           
-           for(var r=startHourDisplay;r<higherInt;r++){
+		   if(higherInt<26500){
+		   	higherInt += 400;
+		   }
+           for(var r=startHourDisplay;r<higherInt;r+=EVERY){
                var hourmin=r%(24*60);
                var min=r%60;
                var hour=(hourmin-min)/60;
-               
-               var objectHtmlString=timelineDisplayForTime(""+hour+":"+min, hour, min, r*VERTICALSPACE_HOUR/60);
-               var htmlObject=$(objectHtmlString);
+			   
+               var objectHtmlString=timelineDisplayForTime(""+hour+":"+min, hour, min, (r-lowerInt)*VERTICALSPACE_HOUR/60);	
+			   var htmlObject=$(objectHtmlString);
                
                $('#timelinediv').append(htmlObject);
            }
@@ -186,6 +196,32 @@
           return Number(hourArray[1])+Number(hourArray[0])*60;
       }
       
+	  function fillTimelineWithDates(){
+	  	 for(var r=(8*60);r<(14*60);r+=30){
+               var hourmin=r%(24*60);
+               var min=r%60;
+               var hour=(hourmin-min)/60;
+			   
+               var objectHtmlString=timelineDisplayForTime(""+hour+":"+min, hour, min, (r-(8*60))*VERTICALSPACE_HOUR/60);	
+			   var htmlObject=$(objectHtmlString);
+               
+               $('#timelinediv').append(htmlObject);
+           }
+		   
+	  }
+      
+		
+	 function checkIfTimelineDataExists(favorites){
+	 	if(favorites.length != 0 ){
+        	updateTimeline(favorites);
+		}
+		else{
+			htmlString = '<div class="error"><img src="images/error.png" alt="error" id="errorImg" /><p>U hebt nog geen evenementen voor deze dag toegevoegd! <br /> Voeg ze toe of kies een andere dag via het menu onderaan.<p></div>';
+			$("#timelinediv").html(htmlString);
+			fillTimelineWithDates();
+		}
+	 }
+	  
       /* Converts dayString and hourString into an unique id */
       function numberForDayHour(dayString, hourString){
           return numberForDay(dayString)*24*60+numberForHour(hourString);

@@ -1,80 +1,245 @@
+<!doctype html>
 <html>
+
   <head>
     <title>SearchResults</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
     <link rel="stylesheet" href="css/main.css" />
-    <meta content="width=device-width,initial-scale=1" name="viewport">
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+       <!--<script type="text/javascript" src="js/jtrace.js"></script>-->
     <script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
     <script type="text/javascript" src="js/utility.js"></script>
     
     <script type="text/javascript">
-        /* implements the filter */
+        // filter the results by user input
         function filter(dataSet, nameOfEvent, minTime, maxTime){
-            return dataSet;
+            var filteredData = new Array();
+			nameOfEvent = nameOfEvent.toLowerCase();
+			var bTime = 0;
+			var eTime = 0;
+			var minTime = parseInt(minTime);
+			var maxTime = parseInt(maxTime);
+			
+			$.each(dataSet, function(index, value){
+				bTime = parseInt(numberForHourString(value.Begin));
+				eTime = parseInt(numberForHourString(value.Einde)); 
+				var lcaseTitle = value.Titel.toLowerCase();
+				if(bTime < 600){
+					bTime += 2400;
+				}
+				if(eTime < 600){
+					eTime += 2400;
+				}
+
+				if(lcaseTitle.indexOf(nameOfEvent) != -1 && minTime < eTime && maxTime > bTime && bTime > (minTime - 100) && eTime != bTime){
+					filteredData.push(value);
+				}
+			});
+			
+			return filteredData;
         }
     
-        /* the init method*/
+		$(window).load(function(){
+			$("#results").hide();
+			searchResults("", "0700","9000");
+		});
+	
+        /*
+		 * Init methode
+ 		*/
         var dataSetForDay;
+		var dataSetForDayFavourite;
         var day;
-        function searchResults(){
-            day=getSessionValue("date");
-            //temporary
-            //getEvents(day, function(){}, function(){});
-            //
-        
-            dataSetForDay = JSON.parse(localStorage["day_"+day]);
-            
-            var dataSet = filter(dataSetForDay, 
-            localStorage["search_name"], 
-            localStorage["search_minHour"],  
-            localStorage["search_maxHour"]);
-            
-            display(dataSetForDay);
+        function searchResults(name, minHour, maxHour){
+            if(getSessionValue('date') != null){
+      			day = $.parseJSON(getSessionValue('date'));
+	  		}
+	  		else{
+	  			day = "14";
+	  		}
+          	
+			dataSetForDay = getEvents2(day);
+			
+		  	$("#day").html(day+" juli");
+			
+            //dataSetForDay = JSON.parse(localStorage["day_"+day]);
+			if(localStorage["day_"+day+"favourites"]){
+            	dataSetForDayFavourite = JSON.parse(localStorage["day_"+day+"favourites"]);
+			}
+			else{
+				dataSetForDayFavourite = [];			
+			}
+			
+            var dataSet = filter(dataSetForDay, name, minHour, maxHour);
+			var dataSetFavourites = filter(dataSetForDayFavourite, name, minHour, maxHour);
+     
+            display(dataSet, dataSetFavourites);
         }
-    
-        function display(items){
+		
+    	/*
+		 * Sets all the items on the screen
+ 		*/
+        function display(items, itemsfavourite){
            $("#listdiv").empty();
-           
+		   
+		   if(items == 0){
+		   	$("#listdiv").append("<p class='nosearchresults'>Geen evenementen gevonden die voldoen aan uw criteria. Pas de criteria aan voor een beter resultaat.</p>");
+		   }
+		   
            $.each(items, function(index, item){
-              $("#listdiv").append(createARow(item));
+			var favourite = false;
+				$.each(itemsfavourite, function(index2, itemF){
+					if(itemF.id == item.id){
+						favourite = true;
+					}
+			 	 });
+			  
+				if(favourite == true){
+					$("#listdiv").append(createARow(item, true));
+				}
+			  	else{
+					$("#listdiv").append(createARow(item, false));
+				}
+			 
            });
+		   $("#results").show();
         }
         
         function addFavoriteById(id){
-            addFavourite(getItemById(dataSetForDay, id), day);
+            addFavourite(getItemById(dataSetForDay, id), day, id, addedToFavourites);
         }
-    
-        function createARow(item){
-            return "<div class='resultitem'>"+
-                        "<div class='resulttitle'>"+item.Titel+"</div>"+
-                        "<div class='resultbegin'>"+item.Begin+"</div>"+
-                        "<div class='resultend'>"+item.Einde+"</div>"+
-                        "<div class='resultbutton'><a href='#' onclick=\"addFavoriteById("+getIdOfItem(item)+")\"><div class='sterretje'>Voeg toe</div></a></div>"+
+    	
+		
+		// APPENDS THE ITEM TO THE RESULTS
+        function createARow(item, favourite){
+            var htmlString = "<div class='resultitem founditem" + getIdOfItem(item)  + "'>"+
+                        "<div class='resultinfo'><div class='resulttitle'>"+item.Titel+"</div>"+
+                        "<div class='eventTime'>"+item.Begin+" - "+item.Einde+"</div></div>" +
+                        "<div class='resultbutton";
+						if(favourite == true){
+							htmlString += " added";
+						};
+						htmlString += "'><a ";
+						if(favourite == true){
+							htmlString += "disabled=true ";
+						}
+						else{
+							htmlString += "onclick=\"addFavoriteById("+getIdOfItem(item)+")\" ";
+						}
+						htmlString += "alt='voeg toe'><div class='sterretje'>"
+						if(favourite == true){
+							htmlString += "toegevoegd";
+						}
+						else{
+							htmlString += "voeg toe";
+						}
+						htmlString += "</div></a></div><div class='clearboth'></div>"+
+						
                     "</div>";
+					
+			return htmlString;
         }
         
-        $(searchResults);
+		
     </script>
   </head>
   <body>
-    <div data-role="page">
+    <section data-role="page">
 
-			<div data-role="header" id="headerbar">
-				<img src="images/logo_ghent.png" id="headerbarlogo" />
+			<section data-role="header" id="headerbar">
+				<a href="javascript:history.go(-1)"><img src="images/back_icon.png" id="homeicon"></a>
+				<img src="images/lijntje.jpg" id="homeline"/>
 				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
 				</div>
 				<img src="images/lijntje.jpg" id="homeline"/>
 
-			</div>
+			</section>
 
-			<div data-role="content">
-				<div id="listdiv">
-    			</div>
-                <input type="button" class="btn" alt="commit" onClick="location.href='timeline.html'" value="TERUG" />
-			</div>
-		</div>
+			<section data-role="content" id="content">
+                <div class="cboxlong">
+                    <form id="filterForm">
+                        <div class="formtext">
+                        	<h2 id="day">Juli</h2>
+                            <input type="text" id="searchTitle" onKeyUp="filterResults();" class="formtextfield small" placeholder="ZOEKEN OP NAAM" />
+                        </div>
+                        <div class="clearboth"></div>
+                        <div class="formtext">
+                        	Zoek tussen<br />
+                            <select id="beginHour" onChange="solveConflicts('begin');">
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">01</option>
+                                <option value="26">02</option>
+                                <option value="27">03</option>
+                                <option value="28">04</option>
+                            </select>
+                            <select id="beginMin" onChange="solveConflicts('begin');">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                             </select>
+                             <br /> 
+                            <select id="endHour" onChange="solveConflicts('end');">
+                                <option value="7">07</option>
+                                <option value="8" selected>08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">01</option>
+                                <option value="26">02</option>
+                                <option value="27">03</option>
+                                <option value="28">04</option>
+                                <option value="29">05</option>
+                            </select>
+                            <select id="endMin" onChange="solveConflicts('end');">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                    </form>	
+                </div>
+                <div id="results" class="cboxlong">
+                    <div id="listdiv">
+                    </div>
+                </div>
+                <a href="#" onClick="location.href='timeline.html'" class="btn" alt="go to timeline">TERUG NAAR TIJDSLIJN</a>
+                <div class="clearboth"></div>
+            </section>
+		</section>
   </body>
 </html>
