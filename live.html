@@ -57,10 +57,7 @@
 			
 			$(document).ready(function() {
 				// SET MAP
-				map = new L.Map(livemap).setView(new L.LatLng(51.050729,3.724022), 13);
-				wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
-					map.addLayer(new wax.leaf.connector(tilejson));
-				});
+				
 				
 				// SET CANVAS OF MAP HEIGHT
 				var docheight = $(document).height();
@@ -69,9 +66,20 @@
 				// Get date to load right events
 				var date = new Date();
 				var day_date = date.getDate();
-				day_date = 14;
-				var data = getEvents2(day_date);
-				getLocation(data, 'events');
+				//day_date = 14;
+				
+				if(day_date >= 14 && day_date <= 23){
+					map = new L.Map(livemap).setView(new L.LatLng(51.050729,3.724022), 13);
+					wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
+					map.addLayer(new wax.leaf.connector(tilejson));
+				});
+					var data = getEvents2(day_date);
+					getLocation(data, 'events');
+				}
+				else{
+					$("#livemap").html("<h1 class='error red'>Enkel beschikbaar tijdens de Gentse Feesten</h1>");
+				}
+				
 			});
 			
 			$(window).resize(function(){

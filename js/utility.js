@@ -705,6 +705,7 @@ function dayChooser(){
 * SETS A ONE DIGIT NUMBER TO A TWO DIGIT fe 9 TO 09
 */
 function twoDigits(digit){
+	digit = ""+digit;
 	if(digit.length == 1){
 		digit = "0" + digit;
 		return digit;

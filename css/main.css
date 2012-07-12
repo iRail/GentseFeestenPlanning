@@ -237,7 +237,7 @@ h2{
 #logo{
 	height:111px;
 	width:135px;
-	margin:0 auto;
+	margin:5px auto 0 auto;
 }
 
 #logo img{
@@ -726,3 +726,7 @@ h2{
 	background-image: url(../images/event_icon.png);
 
 }
+.red{
+	color:#a42434;
+}
+
