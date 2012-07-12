@@ -9,7 +9,6 @@
 		<link rel="stylesheet" href="css/main.css" />
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
-        <script type="text/javascript" src="js/jtrace.js"></script>
         <!--<link rel="stylesheet" href="leaflet.css" />-->
     	<!--[if lte IE 8]><link rel="stylesheet" href="leaflet.ie.css" /><![endif]-->
 
@@ -30,7 +29,6 @@
 					var d = distance(Number(value.latitude), Number(lat), Number(value.longitude), Number(long));
 					
 					if(d < 0.10 && value.Begin < parseInt(currentTime) && value.Einde > parseInt(currentTime)){
-						trace(d);
 						filteredData.push(dataSet);
 					}
 				});
@@ -39,8 +37,13 @@
 			}
 			
 			var radius = 0.5;
+			var map;
 			
 			$(document).ready(function() {
+				map = new L.Map(livemap).setView(new L.LatLng(51.050729,3.724022), 13);
+				wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
+					map.addLayer(new wax.leaf.connector(tilejson));
+				});
 				// Get date to load right events
 				var date = new Date();
 				var day_date = date.getDate();
@@ -48,6 +51,8 @@
 				var data = getEvents2(day_date);
 				getLocation(data, 'events');
 			});
+			
+		
 		</script>
 	</head>
 	<body>
@@ -64,7 +69,7 @@
 
 			<section data-role="content" id="content">
 				<div class="contentbox">
-					<h2>Evenementen in de buurt</h2>
+					<h2>Momenteel in de buurt:</h2>
 					<div id="livemap">
                     
                     </div>

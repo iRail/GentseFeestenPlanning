@@ -9,8 +9,6 @@
 		<link rel="stylesheet" href="css/main.css" />
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
-        <script type="text/javascript" src="js/jtrace.js"></script>
-        <!--<link rel="stylesheet" href="leaflet.css" />-->
     	<!--[if lte IE 8]><link rel="stylesheet" href="leaflet.ie.css" /><![endif]-->
 
     	<script type="text/javascript" src="js/leaflet.js"></script>
@@ -38,9 +36,13 @@
 				return filteredData;
 			}
 			
-		
+			var map;
 			
 			$(document).ready(function() {
+				map = new L.Map(toiletmap).setView(new L.LatLng(51.050729,3.724022), 13);
+				wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
+					map.addLayer(new wax.leaf.connector(tilejson));
+				});
 				// Get date to load right events
 				var data = getToilets();
 				getLocation(data, 'toilets');

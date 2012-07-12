@@ -9,6 +9,8 @@
 /* lijntje welk uur het is
 /* DAY PICKER HIGHER ON S2,...
 /* search on date?
+/* if plaats bestaat pas plaats toevoegen
+/* datum op map onderaan
 
 
 /*
@@ -278,7 +280,7 @@ function getLocation(data, type) {
 		return
 	}
 	// Fetch a position
-	navigator.geolocation.watchPosition(function(position) {
+	navigator.geolocation.getCurrentPosition(function(position) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		if(type == 'all'){
@@ -335,41 +337,44 @@ function setLiveMap(lati, long, data){
 	var eventLong = long;
 	var filtered_data = filter(data, long, lati);
 	
-	var map = new L.Map(livemap).setView(new L.LatLng(eventLat,eventLong), 15);
-
-	wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
-		map.addLayer(new wax.leaf.connector(tilejson));
-	});
+	map.setView(new L.LatLng(lati,long), 17);
+	
+	
 	
 	var MyIcon = L.Icon.extend({
     	iconUrl : 'images/marker.png',
         iconSize : new L.Point(25, 41),
         shadowSize : null,
-        iconAnchor : new L.Point(20, 38)})
-        
-    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
-        marker.setIcon(new MyIcon);
-		// WHAT IN THE POPUP
-		var string = "<h1>U bent hier!</h1>";
-		marker.bindPopup(string);
-        map.addLayer(marker);
-	
-	$.each(filtered_data, function(index, value){
+        iconAnchor : new L.Point(16, 35)})
 		
-		var MyIcon2 = L.Icon.extend({
-    	iconUrl : 'images/marker.png',
+	var MyEvents = L.Icon.extend({
+    	iconUrl : 'images/marker_event.png',
         iconSize : new L.Point(25, 41),
         shadowSize : null,
-        iconAnchor : new L.Point(20, 38)})
+        iconAnchor : new L.Point(16, 35)})
         
-    	var marker2 = new L.Marker(new L.LatLng(value.latitude, value.longitude));
-        marker2.setIcon(new MyIcon);
+    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+	var group = new L.LayerGroup();
+    marker.setIcon(new MyIcon);
 		// WHAT IN THE POPUP
-		var string = "<h1>dfd</h1>";
-		marker2.bindPopup(string);
-        map.addLayer(marker2);
+	var string = "<h1>U bent hier!</h1>";
+	marker.bindPopup(string).openPopup();
+   	group.addLayer(marker);
+	console.log(data);
+	
+	
+	$.each(data, function(index, value){
+		
+		console.log(value);
+    	var marker = new L.Marker(new L.LatLng(value.latitude, value.longitude));
+        marker.setIcon(new MyEvents);
+		// WHAT IN THE POPUP
+		var string = "<h1>" + value.Titel + "</h1>";
+		marker.bindPopup(string);
+        group.addLayer(marker);
 	});
 
+	map.addLayer(group);
 }
 
 
@@ -559,7 +564,7 @@ function setMap(data, div){
     	iconUrl : 'images/marker.png',
         iconSize : new L.Point(25, 41),
         shadowSize : null,
-        iconAnchor : new L.Point(20, 38)})
+        iconAnchor : new L.Point(16, 35)})
         
     var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
         marker.setIcon(new MyIcon);
@@ -579,33 +584,41 @@ function setMap(data, div){
 * Sets toilets on map
 */
 function setToilets(data, long, lat){
-	var eventLat = lat; 
-	var eventLong = long;
 	
-	window.alert("dfd");
-	var map = new L.Map(toiletmap).setView(new L.LatLng(eventLat,eventLong), 15);
-
-	wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
-		map.addLayer(new wax.leaf.connector(tilejson));
-	});
+	map.setView(new L.LatLng(lat,long), 17);
 	
-	
-	$.each(data, function(index, value){
 	var MyIcon = L.Icon.extend({
     	iconUrl : 'images/marker.png',
         iconSize : new L.Point(25, 41),
         shadowSize : null,
-        iconAnchor : new L.Point(20, 38)})
+        iconAnchor : new L.Point(16, 35)})
         
-    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+    var marker = new L.Marker(new L.LatLng(lat, long));
         marker.setIcon(new MyIcon);
+	
+	var string = "Hier bent u";
+	
+	var ToiletIcon = L.Icon.extend({
+    	iconUrl : 'images/marker_wc.png',
+        iconSize : new L.Point(25, 41),
+        shadowSize : null,
+        iconAnchor : new L.Point(16, 35)})
+	
+	var group = new L.LayerGroup();
+	
+	marker.bindPopup(string);
+    group.addLayer(marker);
+	
+	$.each(data.publieksanitair, function(index, value){
+    	var marker = new L.Marker(new L.LatLng(value.lat, value.long));
+        marker.setIcon(new ToiletIcon);
 		// WHAT IN THE POPUP
-		var string = "<h1>" + data.Titel + "</h1><br /><p>" + data.Omschrijving + "<br />" + data.Datum + "</br>" + data.Begin + " - " + data.Einde + "<br />" + data.Plaats + data.Straat + " " + data.Huisnr 
-		+"</p>";
+		var string = "<h1>" + value.type + "</h1><p>" +value.situering + "</p>";
 		marker.bindPopup(string);
-        map.addLayer(marker);
+        group.addLayer(marker);
 	});
 	
+	map.addLayer(group);
 }
 
 /*
