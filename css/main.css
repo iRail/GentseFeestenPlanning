@@ -340,6 +340,7 @@ h2{
 
 #timelinecontainer{
 	position:absolute;
+	overflow:y;
 	left:0;
 	right:0;
 	top:38px;

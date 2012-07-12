@@ -8,6 +8,7 @@
 /* mark events as favorite
 /* lijntje welk uur het is
 /* DAY PICKER HIGHER ON S2,...
+/* search on date?
 
 
 /*
@@ -476,7 +477,6 @@ function deleteFavourite(id){
 * Function for getting more info on event
 */
 function getInfo(day, property, value, callback) {
-	window.alert("ddf");
 	var dataSet = getEvents2(day);
 	$.each(dataSet, function(index, result) {
       if(result[property] == value) {
@@ -492,7 +492,6 @@ function getInfo(day, property, value, callback) {
 *
 */
 function timelineInfo(item){
-	window.alert("ddfe");
 	//window.alert(item.Omschrijving);
 	$("#moreInfo").show();
 	$("#infocontainer h2").html(item.Titel);
@@ -506,7 +505,6 @@ function timelineInfo(item){
 function setMap(data, div){
 	var eventLat = data.latitude; 
 	var eventLong = data.longitude;
-	window.alert(div);
 	
 	var map = new L.Map(div).setView(new L.LatLng(eventLat,eventLong), 18);
 
