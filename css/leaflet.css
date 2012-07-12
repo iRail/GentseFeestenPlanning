@@ -251,9 +251,10 @@ a.leaflet-active {
 .leaflet-popup-content-wrapper {
 	padding: 1px;
 	text-align: left;
+	background-color: white;
 	}
 .leaflet-popup-content {
-	margin: 19px;
+	margin: 10px;
 	}
 .leaflet-popup-tip-container {
 	margin: 0 auto;
@@ -303,17 +304,19 @@ a.leaflet-active {
 	background: white;
 	opacity: 0.5;
 	}
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-	background: white;
-
+.leaflet-popup-content-wrapper{
 	box-shadow: 0 1px 10px #888;
 	-moz-box-shadow: 0 1px 10px #888;
 	 -webkit-box-shadow: 0 1px 14px #999;
 	}
+.leaflet-popup-tip {
+	background: #F7F6F2;
+}
+
 .leaflet-popup-content-wrapper {
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	border-radius: 20px;
+	   -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	        border-radius: 10px;
 	}
 .leaflet-popup-content {
 	font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -321,3 +324,51 @@ a.leaflet-active {
 .leaflet-popup-close-button {
 	background: white url(../images/popup-close.png);
 	}
+
+
+.leaflet-popup-content p{
+	margin: 5px;
+}
+
+			.leaflet-popup-content-wrapper h1 {
+				color: white;
+				background-color: #A42434;
+				font-size: 14px;
+				font-weight: bold;
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				padding: 10px 20px 10px 5px;
+				width: 100%;
+				margin: -11px 0 0 -11px;
+				-moz-border-radius: 7px 7px 0 0;
+				-webkit-border-radius: 7px 7px 0 0;
+				border-radius: 7px 7px 0 0;
+			}
+
+	.leaflet-popup-content, .datum{
+		font-size: 12px;
+	}
+
+
+	#locatie{
+		margin-left: 40px;
+		margin-top: -35px;
+		font-weight: bold;
+	}
+
+	.map_icon{
+		margin-top: 20px;
+	}
+
+	.leaflet-popup-content .omschrijving{
+		border-top: 1px dashed #A42434;
+		border-bottom: 1px dashed #A42434;
+		padding: 7px 0 7px 0;
+		width: 80%;
+		margin: 20px 20px 0px 45px;
+	}
+
+.leaflet-popup-content{
+	font-size: 12px;
+}
