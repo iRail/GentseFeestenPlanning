@@ -690,9 +690,8 @@ h2{
 	text-indent: 25px;
 	min-width: 300px;
 	margin: 0 auto 0 auto;
-	font-size: 18px;
-	font-family: "Verdana";
-	text-transform: uppercase;/*
+	font-size: 20px;
+	font-family: "verdana";/*
 	border-radius: 5px 5px 0 0;
 	border-top: 1px solid #A42434;
 	border-left: 1px solid #A42434;
