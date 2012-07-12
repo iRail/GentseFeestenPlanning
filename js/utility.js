@@ -476,6 +476,7 @@ function deleteFavourite(id){
 * Function for getting more info on event
 */
 function getInfo(day, property, value, callback) {
+	window.alert("ddf");
 	var dataSet = getEvents2(day);
 	$.each(dataSet, function(index, result) {
       if(result[property] == value) {
@@ -491,6 +492,7 @@ function getInfo(day, property, value, callback) {
 *
 */
 function timelineInfo(item){
+	window.alert("ddfe");
 	//window.alert(item.Omschrijving);
 	$("#moreInfo").show();
 	$("#infocontainer h2").html(item.Titel);
@@ -504,30 +506,15 @@ function timelineInfo(item){
 function setMap(data, div){
 	var eventLat = data.latitude; 
 	var eventLong = data.longitude;
+	window.alert(div);
 	
-	initialize();
+	var map = new L.Map(div).setView(new L.LatLng(eventLat,eventLong), 18);
+
+	wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
+		map.addLayer(new wax.leaf.connector(tilejson));
+	});
 	
-	function initialize() {
-		var myLatlng = new google.maps.LatLng(eventLat,eventLong);
-		var myOptions = {
-			zoom: 18,
-			center: myLatlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-		
-		/* SET MARKER */
-		titleMarker = data.Title;
-		q
-		var map = new google.maps.Map(document.getElementById(div), myOptions);
 	
-		var marker = new google.maps.Marker({
-			position: myLatlng,
-			title:titleMarker
-			});
-	
-	// To add the marker to the map, call setMap();
-		marker.setMap(map);
-		  }
 
 }
 

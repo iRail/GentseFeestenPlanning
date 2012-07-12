@@ -548,6 +548,7 @@ h2{
 
 #extra_map{
 	height:330px;
+	width:100%;
 	background-color:#FFF;
 	margin-bottom:40px;
 }
@@ -669,3 +670,4 @@ h2{
 	padding:0;
 	margin:0 auto;
 }
+
