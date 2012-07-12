@@ -707,7 +707,7 @@ function dayChooser(){
 function twoDigits(digit){
 	if(digit.length == 1){
 		digit = "0" + digit;
-		return parseInt(digit);
+		return digit;
 	}
 	else{
 		return digit;
