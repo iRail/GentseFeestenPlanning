@@ -506,11 +506,25 @@ function setMap(data, div){
 	var eventLat = data.latitude; 
 	var eventLong = data.longitude;
 	
-	var map = new L.Map(div).setView(new L.LatLng(eventLat,eventLong), 18);
+	var map = new L.Map(div).setView(new L.LatLng(eventLat,eventLong), 15);
 
 	wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
 		map.addLayer(new wax.leaf.connector(tilejson));
 	});
+	
+	var MyIcon = L.Icon.extend({
+    	iconUrl : 'images/marker.png',
+        iconSize : new L.Point(25, 41),
+        shadowSize : null,
+        iconAnchor : new L.Point(20, 38)})
+        
+    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+        marker.setIcon(new MyIcon);
+		// WHAT IN THE POPUP
+		var string = "<h1>" + data.Titel + "</h1><br /><p>" + data.Begin + " - " + data.Einde + "</p>";
+		marker.bindPopup(string);
+        map.addLayer(marker);
+		
 	
 	
 
@@ -521,8 +535,14 @@ function setMap(data, div){
 * Switch between info and map
 */
 function switchInfo(show){
-	$("#extra_info").toggle();
-	$("#extra_map").toggle();
+	if(show == "info"){
+		$("#extra_map").hide();
+		$("#extra_info").show();
+	}
+	else{
+		$("#extra_info").hide();
+		$("#extra_map").show();
+	}
 }
 
 /*

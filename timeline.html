@@ -21,9 +21,9 @@
       // SETS EVENTS ON TIMELINE
       function timelineDisplayForObject(favorite, posTop, posLeft, height, width, id){
           return "<div class='timelineobject' "+
-            "style='top:"+(posTop+10)+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;'><div class='timelinebox d" + id + "'>"+
+            "style='top:"+(posTop+10)+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;' onclick='getInfo("+day+', "id", '+ id + ", timelineInfo)' " + "><div class='timelinebox d" + id + "'>"+
             "<div class='timelineinfo'>"+
-			"<h4 onclick='getInfo("+day+', "id", '+ id + ", timelineInfo)' " + ">" + favorite.Titel+
+			"<h4>" + favorite.Titel+
 			"</h4></div><div class='deleteBtn' onclick='deleteFavourite(" + id + ")'></div>" +
             "</div>"
 			+"</div>";
