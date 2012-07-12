@@ -53,6 +53,7 @@
 					alert(error);
 		});
 		
+		
       	if(!getSessionValue('date')){
 		setSessionValue("date","14");
 		}
@@ -62,6 +63,10 @@
 		setDates(day);
 		setTimeline(day);
 		
+	});
+	
+	$(window).resize(function() {
+  		setTimeline(day);
 	});
    </script>
    <script type="text/javascript">
