@@ -16,25 +16,6 @@
 		<script type="text/javascript" src="js/utility.js"></script>
 		<script type="text/javascript">
 		
-
-			//FILTER DATA
-			function filter(dataSet, long, lat){
-				var filteredData = new Array();
-				var time = new Date();
-				var currentTime = time.getHours() + "" + time.getMinutes();
-				
-				$.each(dataSet, function(index, value){
-					
-					var d = distance(Number(value.lat), Number(lat), Number(value.long), Number(long));
-					
-					if(d < 0.10){
-						trace(d);
-						filteredData.push(dataSet);
-					}
-				});
-				
-				return filteredData;
-			}
 			
 			var map;
 			

@@ -5,13 +5,15 @@
 /* show users the name field ain't required
 /* solve filter 								-//- DONE 11/07/12
 /* solve double events							-//- DONE 11/07/12
-/* mark events as favorite
+/* mark events as favorite						-//- DONE 11/07/12
 /* lijntje welk uur het is
 /* DAY PICKER HIGHER ON S2,...
 /* search on date?
 /* if plaats bestaat pas plaats toevoegen
 /* datum op map onderaan
-
+/* pagina met info via hashtag
+/* LIVE -> dag juist zetten, else enkel van...
+/* meer info knop
 
 /*
  * Data
@@ -339,8 +341,6 @@ function setLiveMap(lati, long, data){
 	
 	map.setView(new L.LatLng(lati,long), 17);
 	
-	
-	
 	var MyIcon = L.Icon.extend({
     	iconUrl : 'images/marker.png',
         iconSize : new L.Point(25, 41),
@@ -360,16 +360,14 @@ function setLiveMap(lati, long, data){
 	var string = "<h1>U bent hier!</h1>";
 	marker.bindPopup(string).openPopup();
    	group.addLayer(marker);
-	console.log(data);
 	
 	
-	$.each(data, function(index, value){
-		
-		console.log(value);
+	$.each(filtered_data, function(index, value){
+
     	var marker = new L.Marker(new L.LatLng(value.latitude, value.longitude));
         marker.setIcon(new MyEvents);
 		// WHAT IN THE POPUP
-		var string = "<h1>" + value.Titel + "</h1>";
+		var string = "<h1>" + value.Begin + " - " + value.Einde + "</h1><p>"+"<img src='images/map_icon.png' class='map_icon'><div id='locatie'><p>" + value.Plaats +"</p><p>"+ value.Straat + " " + value.Huisnr +"</p></div></div><p class='omschrijving'>" + value.Omschrijving + "</p>";
 		marker.bindPopup(string);
         group.addLayer(marker);
 	});
@@ -595,7 +593,7 @@ function setToilets(data, long, lat){
     var marker = new L.Marker(new L.LatLng(lat, long));
         marker.setIcon(new MyIcon);
 	
-	var string = "Hier bent u";
+	var string = "<h1>U bent hier</h1>";
 	
 	var ToiletIcon = L.Icon.extend({
     	iconUrl : 'images/marker_wc.png',
@@ -688,5 +686,18 @@ function dayChooser(){
 		$("#body").append("<div id='mask'></div>");
 		$("#footer").animate({"height":height},300);
 		$("#hiddenDates").show();
+	}
+}
+
+/*
+* SETS A ONE DIGIT NUMBER TO A TWO DIGIT fe 9 TO 09
+*/
+function twoDigits(digit){
+	if(digit.length == 1){
+		digit = "0" + digit;
+		return parseInt(digit);
+	}
+	else{
+		return digit;
 	}
 }

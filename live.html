@@ -22,14 +22,27 @@
 			function filter(dataSet, long, lat){
 				var filteredData = new Array();
 				var time = new Date();
-				var currentTime = time.getHours() + "" + time.getMinutes();
+				var currentTime = time.getHours() + "" + twoDigits(time.getMinutes());
+				if(currentTime < 600){
+					currentTime += 2400;
+				}
+				
 				
 				$.each(dataSet, function(index, value){
 					
 					var d = distance(Number(value.latitude), Number(lat), Number(value.longitude), Number(long));
+					bTime = parseInt(numberForHourString(value.Begin));
+					eTime = parseInt(numberForHourString(value.Einde)); 
+					if(bTime < 600){
+						bTime += 2400;
+					}
+					if(eTime < 600){
+						eTime += 2400;
+					}
 					
-					if(d < 0.10 && value.Begin < parseInt(currentTime) && value.Einde > parseInt(currentTime)){
-						filteredData.push(dataSet);
+					if(bTime < parseInt(currentTime) && eTime > parseInt(currentTime)){
+						filteredData.push(value);
+						console.log(value);
 					}
 				});
 				
