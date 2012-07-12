@@ -673,7 +673,7 @@ h2{
 	margin:0 auto;
 }
 
-#livemap{
+#livemap, #toiletmap{
 	width:90%;
 	height:300px;
 	margin:0 auto;

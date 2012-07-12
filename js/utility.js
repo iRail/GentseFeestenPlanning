@@ -133,13 +133,48 @@ function getEvents2(day) {
 				}
 				
 				localStorage.setItem("day_" + day, JSON.stringify(data));
-				return cachedData;
+				return data;
 			}
 		});
 	} else {
 		return cachedData;
 	}
 }
+
+/*
+ * RETURNS events for specific day without callback
+ */
+function getToilets() {
+	if (!Modernizr.localstorage) {
+		cbError("No localStorage accessible")
+		return
+	}
+
+	// Manage current day
+	var cachedData = $.parseJSON(localStorage.getItem("gf_toilets"));
+	if (cachedData == null) {
+		$.ajax({
+			url : 'http://data.appsforghent.be/poi/publieksanitair.json',
+			async : false,
+			dataType : 'json',
+			success : function(data) {
+				/*// TODO: QUOTA_EXCEEDED, remove previous days?
+				data=data["201207"+day];
+				
+				// adding the id's to the data
+				for(var i=0;i<data.length;i++){
+                                    data[i].id=i;
+				}*/
+			
+				localStorage.setItem("gf_toilets", JSON.stringify(data));
+				return data;
+			}
+		});
+	} else {
+		return cachedData;
+	}
+}
+
 
 /*
  * Gets the Id of a given item
@@ -236,52 +271,26 @@ function getSessionValue(key) {
 /*
  * Fetch geolocation
  */
-function getLocation(data) {
-
+function getLocation(data, type) {
 		// Check if we have geolocation capabilities
 	if (!Modernizr.geolocation) {
 		cbError("No HTML5 geolocation available")
 		return
 	}
-
 	// Fetch a position
 	navigator.geolocation.watchPosition(function(position) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
-		setLiveMap(latitude, longitude, data);
-		
-	
-	}, function(error) {
-		switch (error.code) {
-		case error.TIMEOUT:
-			cbError("Time-out")
-			break;
-		default:
-			cbError("Unknown error")
+		if(type == 'all'){
+			setLiveMap(latitude, longitude, data);
+			setToilets(data, longitude, latitude);
 		}
-		;
-	}, {
-		enableHighAccuracy:true, maximumAge:30000, timeout:27000
-	// Time-out after 10 seconds
-	});
-}
-
-/*
- * Fetch geolocation
- */
-function getLocation(data) {
-
-		// Check if we have geolocation capabilities
-	if (!Modernizr.geolocation) {
-		cbError("No HTML5 geolocation available")
-		return
-	}
-
-	// Fetch a position
-	navigator.geolocation.watchPosition(function(position) {
-		var latitude = position.coords.latitude;
-		var longitude = position.coords.longitude;
-		setLiveMap(latitude, longitude, data);
+		if(type == 'toilets'){
+			setToilets(data, longitude, latitude);
+		}
+		if(type == 'events'){
+			setLiveMap(latitude, longitude, data);
+		}
 		
 	
 	}, function(error) {
@@ -565,6 +574,39 @@ function setMap(data, div){
 
 }
 
+
+/*
+* Sets toilets on map
+*/
+function setToilets(data, long, lat){
+	var eventLat = lat; 
+	var eventLong = long;
+	
+	window.alert("dfd");
+	var map = new L.Map(toiletmap).setView(new L.LatLng(eventLat,eventLong), 15);
+
+	wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
+		map.addLayer(new wax.leaf.connector(tilejson));
+	});
+	
+	
+	$.each(data, function(index, value){
+	var MyIcon = L.Icon.extend({
+    	iconUrl : 'images/marker.png',
+        iconSize : new L.Point(25, 41),
+        shadowSize : null,
+        iconAnchor : new L.Point(20, 38)})
+        
+    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+        marker.setIcon(new MyIcon);
+		// WHAT IN THE POPUP
+		var string = "<h1>" + data.Titel + "</h1><br /><p>" + data.Omschrijving + "<br />" + data.Datum + "</br>" + data.Begin + " - " + data.Einde + "<br />" + data.Plaats + data.Straat + " " + data.Huisnr 
+		+"</p>";
+		marker.bindPopup(string);
+        map.addLayer(marker);
+	});
+	
+}
 
 /*
 * Switch between info and map
