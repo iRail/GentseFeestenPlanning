@@ -1,7 +1,7 @@
 
       var VERTICALSPACE_HOUR=80;//in px;
       //var WIDHT_OF_ELEMENT=100;
-      var MIN_SIZE_OF_ELEMENT=150;
+      var MIN_SIZE_OF_ELEMENT=200;
 	  var MAX_SIZE_OF_ELEMENT=300;
       
       var PLACE_FOR_HOURS=55;
@@ -216,7 +216,7 @@
         	updateTimeline(favorites);
 		}
 		else{
-			htmlString = '<div class="error"><img src="images/error.png" alt="error" id="errorImg" /><p>U hebt nog geen evenementen voor deze dag toegevoegd! <br /> Voeg ze toe of kies een andere dag via het menu onderaan.<p></div>';
+			htmlString = '<div class="error"><a href="searchresults.html"><img src="images/add.svg" alt="error" id="errorImg" /><p>Events toevoegen.</a><p></div>';
 			$("#timelinediv").html(htmlString);
 			fillTimelineWithDates();
 		}
