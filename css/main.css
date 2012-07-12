@@ -476,10 +476,12 @@ h2{
 		}
 
 #back{
-	line-height:1.9em;
 	color:#FFF;
 	padding-right:10px;
 	margin-left:-15px;
+	margin-top: 6px;
+	font-family: "Bebas";
+	font-size: 18pt;
 }
 
 #listdiv {
