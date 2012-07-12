@@ -267,6 +267,39 @@ function getLocation(data) {
 }
 
 /*
+ * Fetch geolocation
+ */
+function getLocation(data) {
+
+		// Check if we have geolocation capabilities
+	if (!Modernizr.geolocation) {
+		cbError("No HTML5 geolocation available")
+		return
+	}
+
+	// Fetch a position
+	navigator.geolocation.watchPosition(function(position) {
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
+		setLiveMap(latitude, longitude, data);
+		
+	
+	}, function(error) {
+		switch (error.code) {
+		case error.TIMEOUT:
+			cbError("Time-out")
+			break;
+		default:
+			cbError("Unknown error")
+		}
+		;
+	}, {
+		enableHighAccuracy:true, maximumAge:30000, timeout:27000
+	// Time-out after 10 seconds
+	});
+}
+
+/*
  * 
  */
 var geocoder = new google.maps.Geocoder();
@@ -292,40 +325,41 @@ function setLiveMap(lati, long, data){
 	var eventLat = lati; 
 	var eventLong = long;
 	var filtered_data = filter(data, long, lati);
+	
+	var map = new L.Map(livemap).setView(new L.LatLng(eventLat,eventLong), 15);
 
-	initialize();
-		/* SET MARKER */
+	wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
+		map.addLayer(new wax.leaf.connector(tilejson));
+	});
+	
+	var MyIcon = L.Icon.extend({
+    	iconUrl : 'images/marker.png',
+        iconSize : new L.Point(25, 41),
+        shadowSize : null,
+        iconAnchor : new L.Point(20, 38)})
+        
+    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+        marker.setIcon(new MyIcon);
+		// WHAT IN THE POPUP
+		var string = "<h1>U bent hier!</h1>";
+		marker.bindPopup(string);
+        map.addLayer(marker);
+	
+	$.each(filtered_data, function(index, value){
 		
-		function initialize() {
-			var myLatlng = new google.maps.LatLng(eventLat,eventLong);
-			var myOptions = {
-				zoom: 17,
-				center: myLatlng,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			}
-			
-			titleMarker = "test";
-			
-			var map = new google.maps.Map(document.getElementById("livemap"), myOptions);
-			
-			
-			
-			var filtered_data = filter(data, long, lati);
-			
-			// Parse locations into markers
-			$.each(filtered_data, function(index, value){
-				var latAndLong = new google.maps.LatLng(value.latitude, value.longitude);
-				var markerLocation = new google.maps.Marker({
-					position: latAndLong,
-					title:"test",
-					map:map
-				});
-				
-				// To add the marker to the map, call setMap();
-				markerLocation.setMap(map);
-			});
-		
-		}
+		var MyIcon2 = L.Icon.extend({
+    	iconUrl : 'images/marker.png',
+        iconSize : new L.Point(25, 41),
+        shadowSize : null,
+        iconAnchor : new L.Point(20, 38)})
+        
+    	var marker2 = new L.Marker(new L.LatLng(value.latitude, value.longitude));
+        marker2.setIcon(new MyIcon);
+		// WHAT IN THE POPUP
+		var string = "<h1>dfd</h1>";
+		marker2.bindPopup(string);
+        map.addLayer(marker2);
+	});
 
 }
 
@@ -521,7 +555,8 @@ function setMap(data, div){
     var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
         marker.setIcon(new MyIcon);
 		// WHAT IN THE POPUP
-		var string = "<h1>" + data.Titel + "</h1><br /><p>" + data.Begin + " - " + data.Einde + "</p>";
+		var string = "<h1>" + data.Titel + "</h1><br /><p>" + data.Omschrijving + "<br />" + data.Datum + "</br>" + data.Begin + " - " + data.Einde + "<br />" + data.Plaats + data.Straat + " " + data.Huisnr 
+		+"</p>";
 		marker.bindPopup(string);
         map.addLayer(marker);
 		

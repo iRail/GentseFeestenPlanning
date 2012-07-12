@@ -27,9 +27,9 @@
 				
 				$.each(dataSet, function(index, value){
 					
-					var d = distance(Number(value.latitude), Number(lat), Number(value.longitude), Number(long));
+					var d = distance(Number(value.lat), Number(lat), Number(value.long), Number(long));
 					
-					if(d < 0.10 && value.Begin < parseInt(currentTime) && value.Einde > parseInt(currentTime)){
+					if(d < 0.10){
 						trace(d);
 						filteredData.push(dataSet);
 					}
@@ -42,11 +42,8 @@
 			
 			$(document).ready(function() {
 				// Get date to load right events
-				var date = new Date();
-				var day_date = date.getDate();
-				day_date = 14;
-				var data = getEvents2(day_date);
-				getLocation(data);
+				var data = getToilets();
+				getToilets(data);
 			});
 		</script>
 	</head>
