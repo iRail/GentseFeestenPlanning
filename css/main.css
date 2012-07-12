@@ -398,12 +398,13 @@ h2{
  			cursor:pointer;
 			position:absolute;
 			top:5px;
-			right: 10px;
-			width:20px;
-			height:20px;
+			right: -30px;
+			width:15px;
+			height:15px;
 			background-image:url(../images/delete.png);
-			background-size: 18px;
-			background-repeat: none;
+			background-repeat: no-repeat;
+			background-size: 12px;
+			padding: 18px;
  		}
 		
 		.timelineinfo{
