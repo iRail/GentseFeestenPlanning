@@ -330,21 +330,21 @@ a.leaflet-active {
 	margin: 5px;
 }
 
-			.leaflet-popup-content-wrapper h1 {
-				color: white;
-				background-color: #A42434;
-				font-size: 14px;
-				font-weight: bold;
-				text-align: center;
-				text-transform: uppercase;
-				letter-spacing: 1px;
-				padding: 10px 20px 10px 5px;
-				width: 100%;
-				margin: -11px 0 0 -11px;
-				-moz-border-radius: 7px 7px 0 0;
-				-webkit-border-radius: 7px 7px 0 0;
-				border-radius: 7px 7px 0 0;
-			}
+	.leaflet-popup-content-wrapper h1 {
+		color: white;
+		background-color: #A42434;
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		padding: 10px 20px 10px 5px;
+		width: 276px;
+		margin: -11px 0 0 -11px;
+		-moz-border-radius: 7px 7px 0 0;
+		-webkit-border-radius: 7px 7px 0 0;
+		border-radius: 7px 7px 0 0;
+	}
 
 	.leaflet-popup-content, .datum{
 		font-size: 12px;
