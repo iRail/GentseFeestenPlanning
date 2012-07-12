@@ -569,8 +569,7 @@ function setMap(data, div){
     var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
         marker.setIcon(new MyIcon);
 		// WHAT IN THE POPUP
-		var string = "<h1>" + data.Titel + "</h1><br /><p>" + data.Omschrijving + "<br />" + data.Datum + "</br>" + data.Begin + " - " + data.Einde + "<br />" + data.Plaats + data.Straat + " " + data.Huisnr 
-		+"</p>";
+		var string = "<h1>" + data.Begin + " - " + data.Einde + "</h1><p>"+"<img src='images/map_icon.png' class='map_icon'><div id='locatie'><p>" + data.Plaats +"</p><p>"+ data.Straat + " " + data.Huisnr +"</p></div></div><p class='omschrijving'>" + data.Omschrijving + "</p>";
 		marker.bindPopup(string);
         map.addLayer(marker);
 		
