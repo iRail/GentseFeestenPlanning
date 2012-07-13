@@ -361,7 +361,13 @@ h2{
 	text-transform:uppercase;
 	letter-spacing:1px;
 }
-
+	.today{
+		background-color: white;
+		background-image: url(../images/today.png);
+		background-repeat: no-repeat;
+		background-position: 10px 10px;
+		color: #A42434;
+	}
 
 /**
 *TIMELINE
