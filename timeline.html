@@ -88,9 +88,12 @@
 	  
 	  function setChar(){
 	  	$("#titelTimeline").each(function(){
+			var newString = "";
 			var charCounter = $(this).text().length;
-			if(charCounter > 35){
-				
+			if(charCounter > 30){
+				newString = $(this).text().substr(0, 30);
+				newString += "...";
+				$(this).text(newString);
 			}
 
 	})
