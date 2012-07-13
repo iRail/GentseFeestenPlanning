@@ -19,12 +19,13 @@
     
       // SETS EVENTS ON TIMELINE
       function timelineDisplayForObject(favorite, posTop, posLeft, height, width, id){
+		  var linkUrl = "events.html?id=" + id + "&day=" + day;
           return "<div class='timelineobject' "+
             "style='top:"+(posTop+10)+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;'><div class='timelinebox d" + id + "'>"+
             "<div class='timelineinfo'>"+
 			"<h4 id='titelTimeline'>" + favorite.Titel+
 			"</h4></div><div class='deleteBtn' onclick='deleteFavourite(" + id + ")'></div>" +
-            "<div class='moreinfo' onclick='getInfo("+day+', "id", '+ id + ", timelineInfo)'>MEER INFO</div>" +
+            "<div class='moreinfo' onclick='" + "window.location.href = " + linkUrl + "'>MEER INFO</div>" +
 			"</div>"
 			+"</div>";
       }

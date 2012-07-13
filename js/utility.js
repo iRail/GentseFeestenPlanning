@@ -620,7 +620,7 @@ function setMap(data, div){
 */
 function setToilets(data, long, lat){
 	
-	if(isLive){
+	if(isLive == true){
 		map.removeLayer(markerHere);
 	}
 	
@@ -657,9 +657,9 @@ function setToilets(data, long, lat){
 		var string = "<h1>" + value.type + "</h1><p>" +value.situering + "</p>";
 		marker.bindPopup(string);
         group.addLayer(marker);
+		map.addLayer(group);
 	});
 	
-	map.addLayer(group);
 	}
 	
 	isLive = true;
