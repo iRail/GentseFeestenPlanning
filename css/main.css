@@ -541,7 +541,6 @@ h2{
  	
 	.eventTime{
 		font-size:12px;
-		font-style:italic;
 	}
 	
  .error{
@@ -706,9 +705,19 @@ h2{
  }
  
  .resultinfo{
- 	width:70%;
+ 	width:50%;
+ 	max-width: ;
 	float:left;
  }
+
+ 	.resulttitle{
+ 		font-weight: bold;
+ 		font-size: 14px;
+ 	}
+
+ 	.resultsubscription{
+ 		color: #777;
+ 	}
 
 .resultbutton{
 	width:90px;
