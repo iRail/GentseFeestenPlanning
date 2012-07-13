@@ -183,6 +183,13 @@ h2{
     padding-left: 30px;
 }
 
+#abouticon {
+    float:right;
+    padding-top: 6px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
 #homeline {
     float:left;
 }
@@ -554,9 +561,9 @@ h2{
 	}
 	
  .error{
-	margin:75px auto 0 auto;
+	margin:40px auto 0 auto;
 	width:70%;
-	font-size:29px;
+	font-size:20px;
     font-family:'Londrina';
 	color:#fff;
 	letter-spacing:1px;
@@ -834,3 +841,20 @@ h2{
 	color:#a42434;
 }
 
+/**
+*ABOUT
+**/
+
+.abouttitle{
+	font-family: "Bebas";
+	font-size: 29px;
+	margin-top: 40px;
+}
+
+.hashtag{
+}
+
+.about{
+	padding-bottom: 70px;
+	margin: 0 10% 0 10%;
+}

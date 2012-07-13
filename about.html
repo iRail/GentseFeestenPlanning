@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Gentse Feesten Planner</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        <meta name="description" content="Gentse Feesten Planner: plan je Gentse Feesten!!" />
+        <meta name="keywords" content="gf12, Gentse Feesten, gfp, gf12 planner, Gentse Feesten Planner, Gent, toiletten Gent, toilet Gent" />
+        <meta name="author" content="Copyright © 2012. Michael Vanderpoorten & Miet Claes" />
+        <meta name="generator" content="http://gf12.be" />
+        <meta name="revisit-after" content="1" />
+        <meta name="robots" content="index,follow" />
+
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
+		<script type="text/javascript" src="js/utility.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				setDates();
+			});
+			
+			 // SETS THE DATES IN THE HIDDEN CONTAINER FOR THE BOTTOM MENU
+			  function setDates(){
+				$.each(dates, function(key, value) {
+							$('<a>').attr({
+								href : '#',
+								id : 'a' + key,
+								onClick : 'getEventsByDay2(' + key + ', "' + value.sname + '");'
+							}).text(value.sname).appendTo('#hiddenDates');
+							// SETS BOTTOM DATE TO THE RIGHT VALUE
+						});
+						setDateOnMenu("GF12");
+			  }
+		</script>
+	</head>
+	<body>
+		<section data-role="page" id="body">
+
+			<section data-role="header" id="headerbar">
+				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
+				</div>
+				<img src="images/lijntje.jpg" id="homeline"/>
+
+			</section>
+
+			<section data-role="content" id="content">
+				<div class="cboxlong">
+					<figure id="logo">
+                    	<img src="images/logo_home.png" alt="Gentse Feesten Planner 2012" />
+                    </figure>
+					<div class="about">
+						<h3 class="abouttitle">De ideale survivor-kit voor de Gentse Feesten 2012, altijd bij de hand!</h3>
+						<h4 class="hashtag">GF12</h4>
+					</div>
+				</div>
+			</section>
+            
+             <section id="footer" data-role="footer" class="fade ui-sticky-footer" data-position="fixed">
+                <div id="daychooser" onclick='dayChooser();'></div>
+                <div id="hiddenDates"></div>
+            </section>
+		</section>
+	</body>
+</html>
