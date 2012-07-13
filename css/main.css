@@ -414,6 +414,7 @@ h2{
 			box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
 			position:absolute;
 			padding:10%;
+			min-height: 130px;
 			top:0;
 			left:0;
 			right:0;
@@ -492,6 +493,14 @@ h2{
 				height: 40px;
 				margin:20px auto 20px auto;
 				display: block;
+			}
+
+			.moreInfoButton{
+				background-image: url(../images/info_searchresults.png);
+				background-repeat: no-repeat;
+				background-position: 0 0 3px 0;
+				height: 30px;
+				text-indent: -999px;
 			}
 
 
