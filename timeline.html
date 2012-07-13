@@ -22,7 +22,7 @@
           return "<div class='timelineobject' "+
             "style='top:"+(posTop+10)+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;'><div class='timelinebox d" + id + "'>"+
             "<div class='timelineinfo'>"+
-			"<h4>" + favorite.Titel+
+			"<h4 id='titelTimeline'>" + favorite.Titel+
 			"</h4></div><div class='deleteBtn' onclick='deleteFavourite(" + id + ")'></div>" +
             "<div class='moreinfo' onclick='getInfo("+day+', "id", '+ id + ", timelineInfo)'>MEER INFO</div>" +
 			"</div>"
@@ -84,6 +84,16 @@
 			checkIfTimelineDataExists(favorites);
 		
 	  };
+	  
+	  function setChar(){
+	  	$("#titelTimeline").each(function(){
+			var charCounter = $(this).text().length;
+			if(charCounter > 50){
+				window.alert("test");
+			}
+
+	})
+	  }
 	  
 	  // SETS THE DATES IN THE HIDDEN CONTAINER FOR THE BOTTOM MENU
 	  function setDates(day){

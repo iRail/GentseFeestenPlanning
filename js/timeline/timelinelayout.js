@@ -120,7 +120,9 @@
 			   var htmlObject=$(objectHtmlString);
                
                $('#timelinediv').append(htmlObject);
+			   
            }
+		   setChar();
       }
       
       /**
