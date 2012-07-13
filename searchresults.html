@@ -140,7 +140,7 @@
 		
 		// APPENDS THE ITEM TO THE RESULTS
         function createARow(item, favourite){
-            var htmlString = "<div class='resultitem founditem" + getIdOfItem(item)  + "'>"+
+            var htmlString = "<div class='resultitem founditem" + getIdOfItem(item)  + "'" + " onclick='$(this).next().toggle();'>"+
                         "<div class='resultinfo'><div class='resulttitle'>"+item.Titel+"</div>"+
                         "<div class='eventTime'>"+item.Begin+" - "+item.Einde+"</div></div>" +
                         "<div class='resultbutton";
@@ -166,7 +166,7 @@
                     "</div>";
 			htmlString += "<div class='resultitem resultExtra'>";
 			htmlString += "<div class='resultinfo'><div class='resulttitle'>"+item.Omschrijving+"</div>"+
-                        "<div class='eventTime'>"+item.Straat+" - "+item.Huisnr+"</div></div>";
+                        "<div class='eventTime'>"+item.Straat+" - "+item.Huisnr+"</div></div><div class='clearboth'></div></div>";
 			
 			return htmlString;
         }
