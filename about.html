@@ -20,7 +20,6 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				setDates();
-				setLogo();
 			});
 			
 			 // SETS THE DATES IN THE HIDDEN CONTAINER FOR THE BOTTOM MENU
@@ -34,16 +33,6 @@
 							// SETS BOTTOM DATE TO THE RIGHT VALUE
 						});
 						setDateOnMenu("GF12");
-			  }
-			  
-			  function setLogo(){
-			  	var docHeight = $(document).height();
-				if(docHeight > 400){
-					$("#logo").css({"display":"block"});
-				}
-				else{
-					$("#logo").css({"display":"none"});
-				}
 			  }
 		</script>
 	</head>
@@ -62,33 +51,10 @@
 					<figure id="logo">
                     	<img src="images/logo_home.png" alt="Gentse Feesten Planner 2012" />
                     </figure>
-					<ul id="beginMenu">
-                    	<li class="menu_icon" onclick="window.location.href = 'dag.html'">
-                        	<figure>
-                            	<img src="images/logos/list.png" alt="list" />
-                            </figure>
-                            <h1>Zoek &amp; plan</h1>
-                        </li>
-                        <li class="menu_icon" onclick="window.location.href = 'timeline.html'">
-                        	<figure>
-                            	<img src="images/logos/favorites.png" alt="favorite" />
-                            </figure>
-                        	<h1>Mijn planning</h1>
-                        </li>
-                        <li class="menu_icon" onclick="window.location.href = 'live.html'">
-                        	<figure>
-                            	<img src="images/logos/live.png" alt="list" />
-                            </figure>
-                        	<h1>Nu bezig</h1>
-                        </li>
-                        <li class="menu_icon" onclick="window.location.href = 'toilets.html'">
-                        	<figure>
-                            	<img src="images/logos/about.png" alt="list" />
-                            </figure>
-                            <h1>WC's</h1>
-                        </li>
-                        <div class="clearboth"></div>
-                    </ul>
+					<div class="about">
+						<h3 class="abouttitle">De ideale survivor-kit voor de Gentse Feesten 2012, altijd bij de hand!</h3>
+						<h4 class="hashtag">GF12</h4>
+					</div>
 				</div>
 			</section>
             
