@@ -532,7 +532,7 @@ h2{
 	.resultitem{
 		width:96%;
 		padding:2%;
- 		margin-bottom:20px;
+ 		border-bottom: 1px dashed #BBB;
  	}
  	
 	.resultitem:nth-child(2n){
@@ -701,29 +701,27 @@ h2{
  }
  
  .resultinfo{
- 	width:50%;
- 	max-width: ;
+ 	width: 60%;
 	float:left;
  }
 
  	.resulttitle{
- 		background-image: url(../images/info_searchresults.png);
- 		background-repeat: no-repeat;
- 		padding: 0 0 0 40px;
  		font-weight: bold;
- 		font-size: 16px;
- 		margin-bottom: 10px;
+ 		font-size: 14px;
+ 		margin: 10px 0 10px 10px;
  		min-height: 40px;
+ 		width:60%;
  	}
 
  	.eventTime{
-		margin-left: 40px;
+		margin-left: 10px;
 	}
 
  	.resultsubscription{
  		color: #777;
 		padding: 10px 0 10px 0;
 		margin: 0 0 10px 40px;
+		font-style: italic;
  	}
 
  	.eventPlace{
@@ -800,6 +798,7 @@ h2{
 
 .resultExtra{
 	display:none;
+	background-image: none;
 }
 
 #toilets{
