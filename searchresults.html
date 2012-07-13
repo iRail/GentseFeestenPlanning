@@ -143,25 +143,26 @@
             var htmlString = "<div class='resultitem founditem" + getIdOfItem(item)  + "'" + " onclick='$(this).next().toggle();'>"+
                         "<div class='resultinfo'><div class='resulttitle'>"+item.Titel+"</div>"+
                         "<div class='eventTime'>"+item.Begin+" - "+item.Einde+"</div></div>" +
+                        
                         "<div class='resultbutton";
-						if(favourite == true){
-							htmlString += " added";
-						};
-						htmlString += "'><a ";
-						if(favourite == true){
-							htmlString += "disabled=true ";
-						}
-						else{
-							htmlString += "onclick=\"addFavoriteById("+getIdOfItem(item)+")\" ";
-						}
-						htmlString += "alt='voeg toe'><div class='sterretje'>"
-						if(favourite == true){
-							htmlString += "toegevoegd";
-						}
-						else{
-							htmlString += "voeg toe";
-						}
-						htmlString += "</div></a></div><div class='clearboth'></div>"+
+                        if(favourite == true){
+                            htmlString += " added";
+                        };
+                        htmlString += "'><a ";
+                        if(favourite == true){
+                            htmlString += "disabled=true ";
+                        }
+                        else{
+                            htmlString += "onclick=\"addFavoriteById("+getIdOfItem(item)+")\" ";
+                        }
+                        htmlString += "alt='voeg toe'><div class='sterretje'>"
+                        if(favourite == true){
+                            htmlString += "toegevoegd";
+                        }
+                        else{
+                            htmlString += "voeg toe";
+                        }
+                        htmlString += "</div></a></div><div class='clearboth'></div>"+
 						
                     "</div>";
 			htmlString += "<div class='resultitem resultExtra'>";
