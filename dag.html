@@ -11,8 +11,10 @@
 		<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
 		<script type="text/javascript" src="js/utility.js"></script>
 		<script type="text/javascript">
+			var day_date;
 			$(document).ready(function() {
-				
+				var date = new Date();
+				day_date = date.getDate();
 
 				$.each(dates, function(key, value) {
 					$('<a>').attr({
@@ -23,11 +25,18 @@
 					$('#a' + key).click(function() {
 						setSessionValue('date', JSON.stringify(value.number));
 					});
-
-					$('<div>').attr({
-						id : 'div' + key,
-						class : 'buttonbox today'
-					}).text(value.name).appendTo('#a' + key);
+					if(day_date == value.number){
+						$('<div>').attr({
+							id : 'div' + key,
+							class : 'buttonbox today'
+						}).text(value.name).appendTo('#a' + key);
+					}
+					else{
+						$('<div>').attr({
+							id : 'div' + key,
+							class : 'buttonbox'
+						}).text(value.name).appendTo('#a' + key);
+					}
 				});
 			});
 		</script>

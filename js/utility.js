@@ -1,20 +1,18 @@
 // SOME TO DO THINGS NOT TO FORGET:
 /* finish solveConflicts(); 					-//- DONE 08/07/12
 /* tell users which day he's looking at			-//- DONE 10/07/12
-/* show users the name field ain't required
 /* solve filter 								-//- DONE 11/07/12
 /* solve double events							-//- DONE 11/07/12
 /* mark events as favorite						-//- DONE 11/07/12
 /* DAY PICKER HIGHER ON S2,... NIET
-/* meer info knop (!!!)
 /* ENKEL TIJDENS GENTSE FEESTEN -> oplossen
 /* .html wegdoen
 /* INFO PAGE
+/* 
 /* FB METATAGS OP HOME
 /* FB Resetten
 /* DEELNEEM KNOP OP EVENTPAGE
 /* HET PIETER PROBLEEM
-/* show users date of today on date page higlighted !!!!!!!!!!!
 /* vuile code comments
 /* geen internet -> backup json files
 
