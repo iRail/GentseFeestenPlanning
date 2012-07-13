@@ -361,7 +361,13 @@ h2{
 	text-transform:uppercase;
 	letter-spacing:1px;
 }
-
+	.today{
+		background-color: white;
+		background-image: url(../images/today.png);
+		background-repeat: no-repeat;
+		background-position: 10px 10px;
+		color: #A42434;
+	}
 
 /**
 *TIMELINE
@@ -407,7 +413,7 @@ h2{
 			-webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
 			box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);
 			position:absolute;
-			padding:4px;
+			padding:10%;
 			top:0;
 			left:0;
 			right:0;
@@ -443,7 +449,7 @@ h2{
 			top: 20px;
 			width: 80%;
 			margin-left: 10px;
-			margin-top: 20px;
+			margin-top: 7px;
 			color: #555;
 		}
 
@@ -500,7 +506,7 @@ h2{
 		h3{
 			float:left;
 			margin:0;
-			font-size:1.2em;
+			font-size:1.1em;
 			font-weight:normal;
 		}
 
@@ -563,15 +569,13 @@ h2{
 	 background: url('../images/bgbeige.png');
 	display:none;
 	z-index:1998;
-	
 }
 
 .moreinfo{
 	display:block;
-	width:95%;
+	width:80%;
 	background-color:#a42434;
 	text-align:center;
-	margin:0 auto;
 	padding: 5px 0 5px 0;
 	color:#d9d9c3;
 	line-height:1.2em;
@@ -731,7 +735,7 @@ h2{
 }
 
 #divDates{
-	padding:0;
+	padding:0 0 20px 0;
 	margin:0 auto;
 }
 

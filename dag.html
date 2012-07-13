@@ -12,6 +12,8 @@
 		<script type="text/javascript" src="js/utility.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				
+
 				$.each(dates, function(key, value) {
 					$('<a>').attr({
 						href : 'searchresults.html',
@@ -24,7 +26,7 @@
 
 					$('<div>').attr({
 						id : 'div' + key,
-						class : 'buttonbox'
+						class : 'buttonbox today'
 					}).text(value.name).appendTo('#a' + key);
 				});
 			});
