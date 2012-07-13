@@ -438,6 +438,23 @@ function filterResults(){
 	searchResults(formName, beginTime, endTime);
 };
 
+
+/*
+ * Submit function of filterform for only name
+ */
+
+function filterName(){
+	// Set filters to localstorage
+	var formName = $("#searchTitle").val();
+	if(formName == ""){
+		filterResults();
+	}
+	else{
+		searchResults(formName, "600", "2800");
+	}
+};
+
+
 /*
  *  Converts hourString into an unique id (int). (hhmm)
  */
