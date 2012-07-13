@@ -445,10 +445,8 @@ h2{
 		
 		.timelineinfo{
 			position:absolute;
-			left:5px;
 			top: 20px;
 			width: 80%;
-			margin-left: 10px;
 			margin-top: 7px;
 			color: #555;
 		}
@@ -543,7 +541,6 @@ h2{
  	
 	.eventTime{
 		font-size:12px;
-		font-style:italic;
 	}
 	
  .error{
@@ -708,9 +705,19 @@ h2{
  }
  
  .resultinfo{
- 	width:70%;
+ 	width:50%;
+ 	max-width: ;
 	float:left;
  }
+
+ 	.resulttitle{
+ 		font-weight: bold;
+ 		font-size: 14px;
+ 	}
+
+ 	.resultsubscription{
+ 		color: #777;
+ 	}
 
 .resultbutton{
 	width:90px;
