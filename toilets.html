@@ -28,14 +28,18 @@
 					map.addLayer(new wax.leaf.connector(tilejson));
 				});
 				
-				// SET CANVAS OF MAP HEIGHT
-				var docheight = $(document).height();
-				var mapheight = docheight * 0.6;
-				$("#toiletmap").height(mapheight);
+			
 				
 				// Get date to load right events
 				dataDaySet = getToilets();
 				getLocation(dataDaySet, 'toilets');
+				isLive = false;
+				
+				// SET CANVAS OF MAP HEIGHT
+				var docheight = $(document).height();
+				var mapTop = $("#toiletmap").offset().top;
+				var mapheight = docheight - mapTop;
+				$("#toiletmap").css("height",mapheight+"px");
 			});
 			
 			window.setInterval(function() {
@@ -43,10 +47,11 @@
 			}, 20000);
 			
 			$(window).resize(function(){
-				// SET CANVAS HEIGHT
+				// SET CANVAS OF MAP HEIGHT
 				var docheight = $(document).height();
-				var mapheight = docheight * 0.6;
-				$("#toiletmap").height(mapheight);
+				var mapTop = $("#toiletmap").offset().top;
+				var mapheight = docheight - mapTop-10;
+				$("#toiletmap").css("height",mapheight+"px");
 			});
 		</script>
 	</head>
@@ -65,8 +70,8 @@
 
 			<section data-role="content" id="content">
 				<div class="contentbox widthhundred">
-					<h2 class="titels" id="toilets">Toiletten in de buurt</h2>
-                    <h4 class="map_info_p">Klik op de icoontjes voor meer info.</h4>
+					<h2 class="titels">Toiletten in de buurt</h2>
+                    <h4 class="map_info_p">Klik op de icoontjes op de map voor meer info.</h4>
 					<div id="toiletmap">
                     
                     </div>

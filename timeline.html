@@ -25,7 +25,7 @@
             "<div class='timelineinfo'>"+
 			"<h4 id='titelTimeline'>" + favorite.Titel+
 			"</h4></div><div class='deleteBtn' onclick='deleteFavourite(" + id + ")'></div>" +
-            "<div class='moreinfo' onclick='" + "window.location.href = " + linkUrl + "'>MEER INFO</div>" +
+            "<a href='" + linkUrl + "' class='moreinfo'>MEER INFO</a>" +
 			"</div>"
 			+"</div>";
       }
@@ -128,7 +128,7 @@
 
 			<section id="infocontainer" data-role="content"  data-scroll= "true" overflow:"scroll";>
 				 <div class="cboxlong">
-                 	<h2 class="titels" id="events"=>Hier komt titel</h2>
+                 	<h2 class="titels" id="events">Hier komt titel</h2>
                     <div id="info_container"> 
                         <div id="extra_map">
                         </div>

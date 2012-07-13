@@ -69,10 +69,7 @@
 				// SET MAP
 				
 				
-				// SET CANVAS OF MAP HEIGHT
-				var docheight = $(document).height();
-				var mapheight = docheight * 0.6;
-				$("#livemap").height(mapheight);
+			
 				// Get date to load right events
 				var date = new Date();
 				day_date = date.getDate();
@@ -91,13 +88,21 @@
 					$("#livemap").css({"background-image":"url('images/nottoday.png')"});
 				}
 				
+				// SET CANVAS OF MAP HEIGHT
+				var docheight = $(document).height();
+				var mapTop = $("#livemap").offset().top;
+				var mapheight = docheight - mapTop;
+				$("#livemap").css("height",mapheight+"px");
+				
 			});
 			
 			$(window).resize(function(){
 				// SET CANVAS HEIGHT
+				// SET CANVAS OF MAP HEIGHT
 				var docheight = $(document).height();
-				var mapheight = docheight * 0.6;
-				$("#livemap").height(mapheight);
+				var mapTop = $("#livemap").offset().top;
+				var mapheight = docheight - mapTop;
+				$("#livemap").css("height",mapheight+"px");
 			});
 		</script>
 	</head>
@@ -114,7 +119,7 @@
 			<section data-role="content" id="content">
 				<div class="contentbox widthhundred">
 					<h2>Momenteel in de buurt:</h2>
-                    <h4 class="map_info_p">Klik op de icoontjes voor meer info.</h4>
+                    <h4 class="map_info_p">Klik op de icoontjes op de map voor meer info.</h4>
 					<div id="livemap">
                     
                     </div>

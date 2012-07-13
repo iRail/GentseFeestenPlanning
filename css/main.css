@@ -819,11 +819,11 @@ h2{
 }
 
 	.map_info_p{
-		width: 230px;
+		width: 100%;;
 		text-align: center;
 		margin: -10px auto 10px auto;
 		font-size: 12px;
-		padding: 5px;
+		padding: 5px 0 5px 0;
 		color: white;
 		background-color: #A42434;
 		font-weight: normal;
@@ -835,9 +835,6 @@ h2{
 	background-image: none;
 }
 
-#toilets{
-	background-image: url(../images/wc_icon.png);
-}
 
 #events{
 	background-image: url(../images/event_icon.png);

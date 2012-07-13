@@ -37,12 +37,14 @@
 			  }
 			  
 			  function setLogo(){
-			  	var docHeight = $(document).height();
-				if(docHeight > 400){
-					$("#logo").css({"display":"block"});
+			  	var docHeight = $(window).height();
+				if(docHeight < 550){
+					$("#logo img").css({"display":"none"});
+					$("#logo").css({"display":"none"});
+					$("#beginMenu").css({"margin-top":"30px", "margin-bottom":"40px"});
 				}
 				else{
-					$("#logo").css({"display":"none"});
+					$("#logo img").css({"display":"block"});
 				}
 			  }
 		</script>
