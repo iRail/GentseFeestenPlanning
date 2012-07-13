@@ -179,8 +179,8 @@ h2{
 #homeicon {
     float:left;
     padding-top: 6px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 #homeline {
@@ -281,6 +281,7 @@ h2{
 	font-weight:normal;
 	font-style:16px;
 	text-transform:uppercase;
+	letter-spacing: 1px;
 }
 
 .menu_icon:nth-child(2n+1){
