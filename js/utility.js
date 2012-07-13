@@ -649,9 +649,11 @@ function setToilets(data, long, lat){
 	markerHere.bindPopup(string);
 	map.addLayer(markerHere);
 	
-	if(isLive == false){
+	if(isLive == true){
+		map.removeLayer(marker);
+	}
 	$.each(data.publieksanitair, function(index, value){
-    	var marker = new L.Marker(new L.LatLng(value.lat, value.long));
+    	marker = new L.Marker(new L.LatLng(value.lat, value.long));
         marker.setIcon(new ToiletIcon);
 		// WHAT IN THE POPUP
 		var string = "<h1>" + value.type + "</h1><p>" +value.situering + "</p>";
@@ -660,7 +662,6 @@ function setToilets(data, long, lat){
 		map.addLayer(group);
 	});
 	
-	}
 	
 	isLive = true;
 }
