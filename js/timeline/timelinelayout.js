@@ -1,5 +1,5 @@
 
-      var VERTICALSPACE_HOUR=80;//in px;
+      var VERTICALSPACE_HOUR=100;//in px;
       //var WIDHT_OF_ELEMENT=100;
       var MIN_SIZE_OF_ELEMENT=200;
 	  var MAX_SIZE_OF_ELEMENT=300;

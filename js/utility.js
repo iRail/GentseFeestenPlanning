@@ -1,18 +1,20 @@
 // SOME TO DO THINGS NOT TO FORGET:
 /* finish solveConflicts(); 					-//- DONE 08/07/12
 /* tell users which day he's looking at			-//- DONE 10/07/12
-/* show users date of today higlighted
 /* show users the name field ain't required
 /* solve filter 								-//- DONE 11/07/12
 /* solve double events							-//- DONE 11/07/12
 /* mark events as favorite						-//- DONE 11/07/12
-/* lijntje welk uur het is
-/* DAY PICKER HIGHER ON S2,...
-/* search on date?
-/* datum op map onderaan
-/* pagina met info via hashtag
-/* LIVE -> dag juist zetten, else enkel van...
-/* meer info knop
+/* DAY PICKER HIGHER ON S2,... NIET
+/* meer info knop (!!!)
+/* ENKEL TIJDENS GENTSE FEESTEN -> oplossen
+/* .html wegdoen
+/* INFO PAGE
+/* FB METATAGS OP HOME
+/* FB Resetten
+/* DEELNEEM KNOP OP EVENTPAGE
+/* HET PIETER PROBLEEM
+/* show users date of today on date page higlighted !!!!!!!!!!!
 
 /*
  * Data
@@ -540,8 +542,21 @@ function timelineInfo(item){
 	//window.alert(item.Omschrijving);
 	$("#moreInfo").show();
 	$("#infocontainer h2").html(item.Titel);
-	$("#infocontainer p").html(item.Omschrijving);
 	setMap(item, 'extra_map');
+}
+
+function timelineInfoEvents(item){
+	//window.alert(item.Omschrijving);
+	$("#moreInfo").show();
+	$("#infocontainer h2").html(item.Titel);
+	setMap(item, 'extra_map');
+	
+	// SET FB META TAGS
+	var htmlString = '<meta name="description" content="' + item.Titel + '" />';
+	htmlString += '<meta property="og:title" content="' + item.Titel + '" />';
+	htmlString += '<meta property="og:url" content="' + window.location.href + '" />';
+	$('head').prepend(htmlString);
+	
 }
 
 /*
@@ -567,8 +582,9 @@ function setMap(data, div){
         marker.setIcon(new MyIcon);
 		// WHAT IN THE POPUP
 		var string = "<h1>" + data.Begin + " - " + data.Einde + "</h1><p>"+"<img src='images/map_icon.png' class='map_icon'><div id='locatie'><p>" + data.Plaats +"</p><p>"+ data.Straat + " " + data.Huisnr +"</p></div></div><p class='omschrijving'>" + data.Omschrijving + "</p>";
-		marker.bindPopup(string);
-        map.addLayer(marker);
+		map.addLayer(marker);
+		marker.bindPopup(string).openPopup();
+        
 		
 	
 	
@@ -682,10 +698,10 @@ function getEventsByDay2(_day, sday){
 // FUNCTION FOR THE DAY CHOOSER IN TIMELINE
 function dayChooser(){
 	
-	if($("#mask").length){
+	if($(".mask").length){
 		$("#daychooser").css("background-position","center 0");
 		$("#daychooser2").css("background-position","center 0");
-		$("#mask").remove();
+		$(".mask").remove();
 		$("#hiddenDates").hide();
 		$("#hiddenDates2").hide();
 		$("#footer").animate({"height":"53"},300);
@@ -694,7 +710,8 @@ function dayChooser(){
 		$("#daychooser").css("background-position","center 53px");
 		$("#daychooser2").css("background-position","center 53px");
 		var height = $("#hiddenDates").height() + 90;
-		$("#body").append("<div id='mask'></div>");
+		$("#body").append("<div class='mask'></div>");
+		$("#moreInfo").append("<div class='mask'></div>");
 		$("#footer").animate({"height":height},300);
 		$("#hiddenDates").show();
 		$("#hiddenDates2").show();

@@ -1,9 +1,16 @@
 <!doctype html>
 <html>
   <head>
-    <title>Dag</title>
+    <title>Event</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="gf12, Gentse Feesten, gfp, gf12 planner, Gentse Feesten Planner, Gent, toiletten Gent, toilet Gent" />
+    <meta name="author" content="Copyright © 2012. Michael Vanderpoorten & Miet Claes" />
+    <meta name="generator" content="http://gf12.be" />
     <meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta property="og:type" content="product" />
+    <meta property="og:image" content="http://gf12.be/images/logo_home.png" />
+    <meta property="og:site_name" content="#GF12 Gentse Feesten Planner!" />
+    <meta property="og:description" content="Download de #GF12 Gentse Feesten Planner app voor je Android of ga mobiel naar gf12&sdot;be en bekijk live welke events er op dat moment om je heen bezig zijn!"/>
 	<link rel="stylesheet" href="css/leaflet.css" />
 	<link rel="stylesheet" href="css/main.css" />
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -17,25 +24,6 @@
     <script type="text/javascript" src="js/utility.js"></script>
     <script type="text/javascript">
     
-      // SETS EVENTS ON TIMELINE
-      function timelineDisplayForObject(favorite, posTop, posLeft, height, width, id){
-          return "<div class='timelineobject' "+
-            "style='top:"+(posTop+10)+"px;left:"+posLeft+"px;width:"+width+"px;height:"+height+"px;'><div class='timelinebox d" + id + "'>"+
-            "<div class='timelineinfo'>"+
-			"<h4>" + favorite.Titel+
-			"</h4></div><div class='deleteBtn' onclick='deleteFavourite(" + id + ")'></div>" +
-            "<div class='moreinfo' onclick='getInfo("+day+', "id", '+ id + ", timelineInfo)'>MEER INFO</div>" +
-			"</div>"
-			+"</div>";
-      }
-      
-	  // SETS HOURS ON TIMELINE
-      function timelineDisplayForTime(timeString, hour, min, posTop){
-          return "<div class='timelinetime' "+
-            "style='top:"+(posTop)+"px;left:"+8+"px;height:"+20+"px;'><div class='timelinetimebox'>"+
-            setTimeDigits(timeString)+
-            "</div></div>";
-      }
       
 	  
 	var day;
@@ -54,36 +42,36 @@
 		});
 		
 		
+		
+		$("#moreInfo").show();
+		
+		
+		
       	if(!getSessionValue('date')){
 		setSessionValue("date","14");
 		}
 		day = $.parseJSON(getSessionValue('date'));
-
-	
-		setDates(day);
-		setTimeline(day);
+		// OPEN JUISTE ITEM INDIEN ER GELINKT IS VANUIT ANDERE PAGINA
+		var pathname = window.location.href;
+		//id=3&day=14
+		spName = pathname.split('=');
+		if(spName[spName.length - 1] != ""){
+			lastPath = spName[1].split('&');
+			lastPathId = lastPath[0];
+			dayPath = spName[2];
+			setSessionValue("date",dayPath);
+			setDates(dayPath);
+			getInfo(dayPath, "id", lastPathId, timelineInfoEvents);
+		}
 		
 	});
+
 	
-	$(window).resize(function() {
-  		setTimeline(day);
-	});
+	
    </script>
    <script type="text/javascript">
    
-      	// HOW TO USE
-      	function setTimeline(day){
-        	//SOME DATA
-        	$("#timelinediv").empty();
-			
-        	var favorites = getFavourites(day);
-        	if(favorites == undefined){
-				favorites = [];
-			}
-			// IF FAVORITES EXISTS, ADD THEM TO TIMELINE
-			checkIfTimelineDataExists(favorites);
-		
-	  };
+      	
 	  
 	  // SETS THE DATES IN THE HIDDEN CONTAINER FOR THE BOTTOM MENU
 	  function setDates(day){
@@ -131,27 +119,6 @@
 			</section>
     </section>
   
-    <section data-role="page" id="body">
-
-			<section data-role="header" id="headerbar">
-                <a href="javascript:history.go(-1)"><img src="images/back_icon.png" id="homeicon"></a>
-				<img src="images/lijntje.jpg" id="homeline"/>
-				<div onclick="window.location.href = 'index.html'"><img src="images/home_icon.png" id="homeicon" />
-				</div>
-				<img src="images/lijntje.jpg" id="homeline"/>
-                <a href="searchresults.html" id="dayHeader" class="floatleft" alt="Search"><h3>Voeg evenementen toe &nbsp; <i id="plus">+</i></h3></a>
-
-			</section>
-
-			<section id="timelinecontainer" data-role="content"  data-scroll= "true" overflow:"scroll";>
-				 <div id="timelinediv">
-                 </div>
-                 <div id="timesdiv">
-                 </div>
-			</section>
-            
-
-	</section>
 	          <section id="footer" data-role="footer" class="fade ui-sticky-footer" data-position="fixed">
                 <div id="daychooser" onclick='dayChooser();'></div>
                 <div id="hiddenDates"></div>

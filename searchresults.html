@@ -44,7 +44,32 @@
     
 		$(window).load(function(){
 			$("#results").hide();
-			searchResults("", "0700","9000");
+			var filteredData = new Array();
+			var time = new Date();
+			var currentTime = time.getHours() + "00";
+			currentTime = parseInt(currentTime);
+			if(currentTime < 600){
+				currentTime += 2400;
+			}
+	
+		
+			searchResults("", currentTime-100,currentTime+100);
+			
+			var hours = time.getHours() - 1;
+			var ehours = time.getHours() + 1;
+			
+			if(time.getHours() == 23){
+				ehours = 0;
+			}
+			if(hours < 6){
+				hours += 24;
+			}
+			if(ehours < 6){
+				ehours += 24;
+			}
+			
+			$('#beginHour').val(""+hours);
+			$('#endHour').val(""+ehours);
 		});
 	
         /*

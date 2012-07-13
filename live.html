@@ -24,7 +24,6 @@
 				var time = new Date();
 				var currentTime = time.getHours() + "" + twoDigits(time.getMinutes());
 				
-				console.log(currentTime);
 				
 				if(currentTime < 600){
 					currentTime += 2400;
@@ -54,6 +53,17 @@
 			
 			var radius = 0.5;
 			var map;
+			var day_date;
+			var isLive = false;
+			var dataDaySet;
+			
+			window.setInterval(function() {
+				if(isLive == true){
+			   		getLocation(dataDaySet, 'events');
+					window.alert("true");
+				}
+			}, 10000);
+
 			
 			$(document).ready(function() {
 				// SET MAP
@@ -65,7 +75,7 @@
 				$("#livemap").height(mapheight);
 				// Get date to load right events
 				var date = new Date();
-				var day_date = date.getDate();
+				day_date = date.getDate();
 				//day_date = 14;
 				
 				if(day_date >= 14 && day_date <= 23){
@@ -73,11 +83,13 @@
 					wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
 					map.addLayer(new wax.leaf.connector(tilejson));
 				});
-					var data = getEvents2(day_date);
-					getLocation(data, 'events');
+					dataDaySet = getEvents2(day_date);
+					getLocation(dataDaySet, 'events');
+					isLive = true;
 				}
 				else{
 					$("#livemap").html("<h1 class='error red'>Enkel beschikbaar tijdens de Gentse Feesten</h1>");
+					$("#livemap").css({"background-image":"url('images/nottoday.jpg')"});
 				}
 				
 			});

@@ -27,6 +27,15 @@
 	 font-size: 14px;
  }
  
+ h4 {
+display: block;
+-webkit-margin-before: 0;
+-webkit-margin-after: 0;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+ 
 a{
 	text-decoration:none;
 	color:inherit;
@@ -101,13 +110,14 @@ h1{
  	clear:both;
  }
  
- #mask{
+ .mask{
  	position:absolute;
 	top:0;
 	bottom:0;
 	left:0;
 	right:0;
 	background-color:rgba(20, 20, 20, 0.7);
+	z-index:1999;
  }
  
  
@@ -546,7 +556,23 @@ h2{
 	right:0;
 	 background: url('../images/bgbeige.png');
 	display:none;
-	z-index:50000;
+	z-index:1998;
+	
+}
+
+.moreinfo{
+	display:block;
+	width:95%;
+	background-color:#a42434;
+	text-align:center;
+	margin:0 auto;
+	padding: 5px 0 5px 0;
+	color:#d9d9c3;
+	line-height:1.2em;
+	position:absolute;
+	top:130px;
+	font-family:'Bebas';
+	font-size:19px;
 }
 
 #line{
@@ -599,6 +625,15 @@ h2{
 /**
  * Searchform
  */
+ #filterForm{
+ 	width:95%;
+	margin:0 auto;
+ }
+ 
+ #beginHour, #beginMin, #endHour, #endMin{
+ 	width:40%;
+	max-width:190px;
+ }
  
  .formtextfield{
     -webkit-box-shadow:  1px 1px 5px 1px rgba(0, 0, 0, 0.3);    
@@ -626,6 +661,7 @@ h2{
     text-transform:uppercase;
 	margin-bottom:10px;
  }
+
 
 
 .btn{
@@ -697,6 +733,8 @@ h2{
 	width:100%;
 	height:300px;
 	margin:0 auto;
+	background-position:top;
+	background-repeat:no-repeat;
 }
 
 /**
