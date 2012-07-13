@@ -498,8 +498,10 @@ h2{
 			.moreInfoButton{
 				background-image: url(../images/info_searchresults.png);
 				background-repeat: no-repeat;
-				background-position: 0 0 3px 0;
-				height: 30px;
+				width: 35px;
+				height: 35px;
+				float: right;
+				margin: 4px 30px 0 0;
 				text-indent: -999px;
 			}
 
@@ -629,8 +631,8 @@ h2{
 }
 
 #errorImg{
-	width:142px;
-	height:142px;
+	width:74px;
+	height:74px;
 	margin:0 auto;
 }
  
