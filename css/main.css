@@ -848,18 +848,34 @@ h2{
 *ABOUT
 **/
 
-.abouttitle{
-	font-family: "Bebas";
-	font-size: 29px;
-	margin-top: 40px;
-	display:block;
-	float:none;
-}
-
-.hashtag{
-}
-
 .about{
 	padding-bottom: 70px;
 	margin: 0 10% 0 10%;
+}
+
+	.about p{
+		margin-top: 20px;
+		line-height: 1.5em;
+	}
+
+	.about a{
+		padding-bottom: 2px;
+		border-bottom: 1px dashed #a42434;
+	}
+
+.abouttitle{
+	font-family: "Bebas";
+	font-size: 32px;
+	margin-top: 40px;
+	display:block;
+	float:none;
+	text-align: center;
+}
+
+.hashtag{
+	text-align: center;
+	font-family: "Bebas";
+	font-size: 25px;
+	font-weight: normal;
+	letter-spacing: 1px;
 }
