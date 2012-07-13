@@ -216,7 +216,7 @@
         	updateTimeline(favorites);
 		}
 		else{
-			htmlString = '<div class="error"><a href="searchresults.html"><img src="images/add.svg" alt="error" id="errorImg" /><p>Events toevoegen.</a><p></div>';
+			htmlString = '<div class="error"><a href="searchresults.html"><img src="images/add.png" alt="error" id="errorImg" /><p>Events toevoegen.</a><p></div>';
 			$("#timelinediv").html(htmlString);
 			fillTimelineWithDates();
 		}
