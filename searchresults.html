@@ -164,7 +164,10 @@
 						htmlString += "</div></a></div><div class='clearboth'></div>"+
 						
                     "</div>";
-					
+			htmlString += "<div class='resultitem resultExtra'>";
+			htmlString += "<div class='resultinfo'><div class='resulttitle'>"+item.Omschrijving+"</div>"+
+                        "<div class='eventTime'>"+item.Straat+" - "+item.Huisnr+"</div></div>";
+			
 			return htmlString;
         }
         

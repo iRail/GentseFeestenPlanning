@@ -15,6 +15,8 @@
 /* DEELNEEM KNOP OP EVENTPAGE
 /* HET PIETER PROBLEEM
 /* show users date of today on date page higlighted !!!!!!!!!!!
+/* vuile code comments
+/* geen internet -> backup json files
 
 /*
  * Data
@@ -340,6 +342,10 @@ function setLiveMap(lati, long, data){
 	var eventLong = long;
 	var filtered_data = filter(data, long, lati);
 	
+	if(isLive){
+		map.removeLayer(markerHere);
+	}
+	
 	map.setView(new L.LatLng(lati,long), 17);
 	
 	var MyIcon = L.Icon.extend({
@@ -354,26 +360,29 @@ function setLiveMap(lati, long, data){
         shadowSize : null,
         iconAnchor : new L.Point(16, 35)})
         
-    var marker = new L.Marker(new L.LatLng(eventLat, eventLong));
+    markerHere = new L.Marker(new L.LatLng(eventLat, eventLong));
 	var group = new L.LayerGroup();
-    marker.setIcon(new MyIcon);
+    markerHere.setIcon(new MyIcon);
 		// WHAT IN THE POPUP
 	var string = "<h1>U bent hier!</h1>";
-	marker.bindPopup(string).openPopup();
-   	group.addLayer(marker);
+	markerHere.bindPopup(string);
+   	map.addLayer(markerHere);
 	
+	if(isLive == false){
+		$.each(filtered_data, function(index, value){
 	
-	$.each(filtered_data, function(index, value){
-
-    	var marker = new L.Marker(new L.LatLng(value.latitude, value.longitude));
-        marker.setIcon(new MyEvents);
-		// WHAT IN THE POPUP
-		var string = "<h1>" + value.Begin + " - " + value.Einde + "</h1><p>"+"<img src='images/map_icon.png' class='map_icon'><div id='locatie'><p>" + value.Plaats +"</p><p>"+ value.Straat + " " + value.Huisnr +"</p></div></div><p class='omschrijving'>" + value.Omschrijving + "</p>";
-		marker.bindPopup(string);
-        group.addLayer(marker);
-	});
-
-	map.addLayer(group);
+			var marker = new L.Marker(new L.LatLng(value.latitude, value.longitude));
+			marker.setIcon(new MyEvents);
+			// WHAT IN THE POPUP
+			var string = "<h1>" + value.Begin + " - " + value.Einde + "</h1><p>"+"<img src='images/map_icon.png' class='map_icon'><div id='locatie'><p>" + value.Plaats +"</p><p>"+ value.Straat + " " + value.Huisnr +"</p></div></div><p class='omschrijving'>" + value.Omschrijving + "</p>";
+			marker.bindPopup(string);
+			group.addLayer(marker);
+		});
+	
+		map.addLayer(group);
+	}
+	
+	isLive = true;
 }
 
 
@@ -597,6 +606,11 @@ function setMap(data, div){
 */
 function setToilets(data, long, lat){
 	
+	if(isLive){
+		map.removeLayer(markerHere);
+	}
+	
+	
 	map.setView(new L.LatLng(lat,long), 17);
 	
 	var MyIcon = L.Icon.extend({
@@ -605,8 +619,8 @@ function setToilets(data, long, lat){
         shadowSize : null,
         iconAnchor : new L.Point(16, 35)})
         
-    var marker = new L.Marker(new L.LatLng(lat, long));
-        marker.setIcon(new MyIcon);
+    markerHere = new L.Marker(new L.LatLng(lat, long));
+    markerHere.setIcon(new MyIcon);
 	
 	var string = "<h1>U bent hier</h1>";
 	
@@ -618,9 +632,10 @@ function setToilets(data, long, lat){
 	
 	var group = new L.LayerGroup();
 	
-	marker.bindPopup(string);
-    group.addLayer(marker);
+	markerHere.bindPopup(string);
+	map.addLayer(markerHere);
 	
+	if(isLive == false){
 	$.each(data.publieksanitair, function(index, value){
     	var marker = new L.Marker(new L.LatLng(value.lat, value.long));
         marker.setIcon(new ToiletIcon);
@@ -631,6 +646,9 @@ function setToilets(data, long, lat){
 	});
 	
 	map.addLayer(group);
+	}
+	
+	isLive = true;
 }
 
 /*
