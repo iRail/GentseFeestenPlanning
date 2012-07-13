@@ -8,7 +8,6 @@
 /* ENKEL TIJDENS GENTSE FEESTEN -> oplossen
 /* .html wegdoen
 /* INFO PAGE
-/* 
 /* FB METATAGS OP HOME
 /* FB Resetten
 /* DEELNEEM KNOP OP EVENTPAGE
