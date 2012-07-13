@@ -445,10 +445,8 @@ h2{
 		
 		.timelineinfo{
 			position:absolute;
-			left:5px;
 			top: 20px;
 			width: 80%;
-			margin-left: 10px;
 			margin-top: 7px;
 			color: #555;
 		}
