@@ -140,7 +140,7 @@
 		
 		// APPENDS THE ITEM TO THE RESULTS
         function createARow(item, favourite){
-            var htmlString = "<div class='resultitem founditem" + getIdOfItem(item)  + "'" + " onclick='$(this).next().toggle();'>"+
+            var htmlString = "<div class='resultitem founditem" + getIdOfItem(item)  + "'" + ">"+
                         "<div class='resultinfo'><div class='resulttitle'>"+item.Titel+"</div>"+
                         "<div class='eventTime'>"+item.Begin+" - "+item.Einde+"</div></div>" +
                         
@@ -162,7 +162,13 @@
                         else{
                             htmlString += "voeg toe";
                         }
-                        htmlString += "</div></a></div><div class='clearboth'></div>"+
+                        htmlString += "</div></a></div>";
+						htmlString += "<div class='moreInfoButton'  onclick='$(this).parent().next().toggle(300);'";
+                        htmlString += "><a ";
+                        htmlString += "alt='meer info'><div class='sterretje'>"
+                        htmlString += "meer info";
+                        htmlString += "</div></a></div>";
+						htmlString += "<div class='clearboth'></div>"+
 						
                     "</div>";
 			htmlString += "<div class='resultitem resultExtra'>";
