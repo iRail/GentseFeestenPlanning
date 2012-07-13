@@ -863,6 +863,10 @@ h2{
 		border-bottom: 1px dashed #a42434;
 	}
 
+	.about img{
+		margin-top: 30px;
+	}
+
 .abouttitle{
 	font-family: "Bebas";
 	font-size: 32px;
