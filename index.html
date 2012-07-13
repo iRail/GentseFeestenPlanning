@@ -20,6 +20,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				setDates();
+				setLogo();
 			});
 			
 			 // SETS THE DATES IN THE HIDDEN CONTAINER FOR THE BOTTOM MENU
@@ -33,6 +34,16 @@
 							// SETS BOTTOM DATE TO THE RIGHT VALUE
 						});
 						setDateOnMenu("GF12");
+			  }
+			  
+			  function setLogo(){
+			  	var docHeight = $(document).height();
+				if(docHeight > 400){
+					$("#logo").css({"display":"block"});
+				}
+				else{
+					$("#logo").css({"display":"none"});
+				}
 			  }
 		</script>
 	</head>
