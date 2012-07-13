@@ -271,6 +271,7 @@ h2{
 	font-weight:normal;
 	font-style:16px;
 	text-transform:uppercase;
+	letter-spacing: 1px;
 }
 
 .menu_icon:nth-child(2n+1){
