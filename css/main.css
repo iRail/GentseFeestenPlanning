@@ -286,7 +286,7 @@ h2{
 	color:#DDDAC7;
 	font-family:'Londrina';
 	font-weight:normal;
-	font-style:16px;
+	font-size:16px;
 	text-transform:uppercase;
 	letter-spacing: 1px;
 }
@@ -347,6 +347,15 @@ h2{
     border-top: 8px solid #c49a6c;
     color: #A42434;
 }
+
+	.cboxlongExtra{
+		width: 100%;
+	}
+
+	.widthhundred{
+		width: 100%;
+		max-width: 100%;
+	}
 
 /**
  * Buttons for the contentbox
@@ -850,6 +859,8 @@ h2{
 	font-family: "Bebas";
 	font-size: 29px;
 	margin-top: 40px;
+	display:block;
+	float:none;
 }
 
 .hashtag{
