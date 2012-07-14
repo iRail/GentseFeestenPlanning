@@ -7,10 +7,13 @@
     <meta name="author" content="Copyright © 2012. Michael Vanderpoorten & Miet Claes" />
     <meta name="generator" content="http://gf12.be" />
     <meta name="viewport" content="target-densityDpi=device-dpi, width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    <meta property="og:type" content="product" />
-    <meta property="og:image" content="http://gf12.be/images/logo_home.png" />
-    <meta property="og:site_name" content="#GF12 Gentse Feesten Planner!" />
-    <meta property="og:description" content="Download de #GF12 Gentse Feesten Planner app voor je Android of ga mobiel naar gf12&sdot;be en bekijk live welke events er op dat moment om je heen bezig zijn!"/>
+    <meta property="og:title" content="#GF12 Planner App" />
+<meta property="og:type" content="game" />
+<meta property="og:url" content="http://gf12.be/site.html" />
+<meta property="og:image" content="http://gf12.be/images/fb.png" />
+<meta property="og:site_name" content="GF12 Planner App" />
+<meta property="og:description" content="Bekijk de events van de Gentse Feesten 2012, voeg toe aan je planning, zoek live naar toiletten in de buurt op de map, zoek live naar events op de map,... De ultieme survivor kit voor de Gentse Feesten 2012!"/>
+<meta property="fb:admins" content="1280846677" />
 	<link rel="stylesheet" href="css/leaflet.css" />
 	<link rel="stylesheet" href="css/main.css" />
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -45,7 +48,12 @@
 		
 		$("#moreInfo").show();
 		
-		
+		// SET CANVAS HEIGHT
+				// SET CANVAS OF MAP HEIGHT
+				var docheight = $(document).height();
+				var mapTop = $("#extra_map").offset().top;
+				var mapheight = docheight - mapTop;
+				$("#extra_map").css("height",mapheight+"px");
 		
       	if(!getSessionValue('date')){
 		setSessionValue("date","14");
@@ -79,7 +87,7 @@
 					$('<a>').attr({
 						href : '#',
 						id : 'a' + key,
-						onClick : 'getEventsByDay(' + key + ', "' + value.sname + '");'
+						onClick : 'getEventsByDay2(' + key + ', "' + value.sname + '");'
 					}).text(value.sname).appendTo('#hiddenDates');
 					// SETS BOTTOM DATE TO THE RIGHT VALUE
 					if(key == day){
@@ -106,7 +114,7 @@
 		</section>
 
 			<section id="infocontainer" data-role="content"  data-scroll= "true" overflow:"scroll";>
-				 <div class="cboxlong">
+				 <div class="cboxlong widthhundred">
                  	<h2 class="titels" id="events"=>Hier komt titel</h2>
                     <div id="info_container"> 
                         <div id="extra_map">
@@ -121,7 +129,7 @@
     </section>
   
 	          <section id="footer" data-role="footer" class="fade ui-sticky-footer" data-position="fixed">
-                <div id="daychooser" onclick='dayChooser();'></div>
+                <div id="daychooser" onclick="dayChooser();"></div>
                 <div id="hiddenDates"></div>
             </section>
   </body>

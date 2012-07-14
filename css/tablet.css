@@ -1,0 +1,118 @@
+/* CSS Document */
+
+#content_left, .app{
+	display:none;
+}
+
+#content #content_content, #footer_content, header #headercontent{
+	width:100%;
+}
+
+header{
+	height:auto;
+}
+
+#content_right{
+	padding-left:5%;
+	padding-right:5%;
+}
+
+.left_box, .left_box2{
+	width:100%;
+	float:none;
+	margin:0;
+}
+
+.extrabox{
+	clear:both;
+	display:block;
+	width:100%;
+	padding-top:20px;
+}
+
+.extrabox #seeApp{
+	background-color:#FFF;
+	padding:14px 0 14px 0;
+	color:#9d2936;
+	font-weight:normal;
+	font-size:19px;
+	font-family:'Bebas';
+}
+
+ul{
+	width:100%;
+}
+
+figure{
+	width:74px;
+	margin:0 auto;
+}
+
+ul li{
+	width:100%;
+}
+
+ul li p {
+	float:none;
+	margin:0 auto;
+	width:100%;
+	text-align:center;
+}
+
+.icon{
+	float:none;
+	margin:0 auto;
+}
+
+#content_right{
+	width:90%;
+}
+
+#logo{
+	width:100%;
+	background-position:center top;
+	background-repeat:no-repeat;
+}
+
+footer{
+	width:90%;
+	padding-left:5%;
+	padding-right:5%;
+}
+
+footer #footercontent{
+	width:100%;
+}
+
+.left_box2{
+	width:45%;
+	margin-right:10%;
+	float:left;
+}
+
+.dl{
+	margin-right:3%;
+}
+
+.last{
+	margin-right:0;
+}
+
+.icons{
+	width:40%;
+	margin:0 auto;
+}
+
+.left_box{
+	width:45%;
+	float:left;
+}
+
+.right{
+	width:100%;
+}
+
+.upperOne{
+	padding-top:0;
+	padding-bottom:5px;
+}

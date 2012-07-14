@@ -2,7 +2,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>#GF12 Planner App</title>
+<title>#GF12: Gentse Feesten Planner App</title>
+<meta name="description" content="De GF12 planner app, de Gentse Feesten planner app!" />
+<meta name="keywords" content="gf12, Gentse Feesten, gfp, gf12 planner, Gent planner, wc's Gent, #gf12 planner, Gentse Feesten Planner, Gent, toiletten Gent, toilet Gent" />
+<meta name="author" content="Copyright © 2012. Michael Vanderpoorten, Miet Claes & iRail" />
+<meta name="generator" content="http://gf12.be" />
+<meta name="revisit-after" content="1" />
+<meta name="robots" content="index,follow" />
+<meta property="og:title" content="#GF12 Planner App" />
+<meta property="og:type" content="game" />
+<meta property="og:url" content="http://gf12.be/" />
+<meta property="og:image" content="http://gf12.be/images/fb.png" />
+<meta property="og:site_name" content="GF12 Planner App" />
+<meta property="og:description" content="Bekijk de events van de Gentse Feesten 2012, voeg toe aan je planning, zoek live naar toiletten in de buurt op de map, zoek live naar events op de map,... De ultieme survivor kit voor de Gentse Feesten 2012!"/>
+<meta property="fb:admins" content="1280846677" />
 <!--make sure mobile devices display the page at the proper scale	-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--[if lt IE 9]>
@@ -13,48 +26,100 @@
 <!--
 <link rel="stylesheet" href="_css/jquery_widgets.css" media="screen, projection" />	
 -->
-<link rel="stylesheet" type="text/css" href="_css/tablet.css" media="all and (min-width: 481px) and (max-width: 800px)" />
-<link rel="stylesheet" type="text/css" href="_css/mobile.css" media="all and (min-width: 0px) and (max-width: 480px)" />
+<link rel="stylesheet" type="text/css" href="css/tablet.css" media="all and (min-width: 481px) and (max-width: 900px)" />
+<link rel="stylesheet" type="text/css" href="css/mobile.css" media="all and (min-width: 0px) and (max-width: 480px)" />
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/site.js"></script>
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/nl_NL/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <section id="container">
 	<header>
     	<div id="headercontent">
+        	<div class="extrabox upperOne" onclick="window.location.href = 'http://m.gf12.be'">
+            	<h2 id="seeApp">Surf je via smartphone of tablet en zie je de app niet? Klik hier!</h2>
+            </div>
         </div>
     </header>
     
     <section id="content">
     	<div id="content_content">
         	<div id="content_left">
-            
+            	<img src="images/images_site/iphoneapp.jpg" alt="app" class="app"/>
             </div>
             <div id="content_right">
-            	<img src="images/images_site/logo.jpg" alt="logo" />
+                <div id="logo"></div>
                 <h1>DE IDEALE SURVIVOR-KIT VOOR DE GENTSE FEESTEN 2012, ALTIJD BIJ DE HAND!</h1>
                 <ul>
                 	<li>
-                    	<img src="images/logos/list.png" class="icon" alt="zoeken" />
-                        <p>Plan je Gentse Feesten. Zoek voor evenementen in een lijst op basis van dag, tijdstip of naam en voeg ze toe aan je planning!</p>
+                    	<figure>
+                    		<img src="images/images_site/search.png" class="icon" alt="zoeken" />
+                        </figure>
+                        <p>Plan je <span class="bold">Gentse Feesten</span>. <span class="bold">Zoek</span> voor evenementen in een lijst op basis van tijdstip of naam en voeg ze toe aan je planning!</p>
                         <div class="clearboth"></div>
                     </li>
                     <li>
-                    	<img src="images/logos/list.png" class="icon" alt="zoeken" />
-                        <p>Plan je Gentse Feesten. Zoek voor evenementen in een lijst op basis van dag, tijdstip of naam en voeg ze toe aan je planning!</p>
+                    	<figure>
+                    		<img src="images/images_site/favorites.png" class="icon" alt="zoeken" />
+                        </figure>
+                        <p>Bekijk je planning, verwijder en voeg evenementen toe en bekijk de evenementen direct op de kaart!</p>
                         <div class="clearboth"></div>
                     </li>
                     <li>
-                    	<img src="images/logos/list.png" class="icon" alt="zoeken" />
-                        <p></p>
+                    	<figure>
+                    		<img src="images/images_site/live.png" class="icon" alt="zoeken" />
+                        </figure>
+                        <p>Bekijk tijdens de Gentse Feesten live wat er om je heen gebeurt op een map!</p>
+                        <div class="clearboth"></div>
+                    </li>
+                    <li>
+                    	<figure>
+                    		<img src="images/images_site/about.png" class="icon" alt="zoeken" />
+                        </figure>
+                        <p>In hoge nood? Bekijk op een map waar de dichtstbijzijnde toiletten zijn!</p>
                         <div class="clearboth"></div>
                     </li>
                 </ul>
             </div>
             <div class="clearboth"></div>
+            <div class="fb-like" data-href="http://gf12.be" data-send="false" data-width="300" data-show-faces="false"></div>
         </div>
     </section>
+    <footer>
+    	<div id="footercontent">
+        	<div class="left_box2">
+        		<h1>DOWNLOADEN</h1>
+                <a href="https://play.google.com/store/apps/details?id=com.isoc.gf12&feature=search_result#?t=W251bGwsMSwyLDEsImNvbS5pc29jLmdmMTIiXQ.." alt="Google Play Store"><img class="dl" src="images/images_site/play.jpg" /></a>
+                <img src="images/images_site/apple.jpg" class="dl"  />
+                <img src="images/images_site/win.jpg" class="dl last"  />
+            </div>
+            <div class="left_box">
+        		<h1>APP GEMAAKT TIJDENS</h1>
+                <a href="summerofcode.be/" class="irail" alt="Summer of Code 2012"><img class="irail" src="images/images_site/isoc.jpg" /></a>
+            </div>
+            <div class="extrabox" onclick="window.location.href = 'http://m.gf12.be'">
+            	<h1>PROBLEMEN?</h1>
+            	<h2 id="seeApp">Surf je via smartphone of tablet en zie je de app niet? Klik hier!</h2>
+            </div>
+            <div class="left_box2 right">
+        		<h1>MET DANK AAN</h1>
+                <div class="icons">
+                	<img src="images/images_site/irail.jpg" />
+                	<img src="images/images_site/datatank.jpg" />
+                </div>
+            </div>
+            <div class="clearboth"></div>
+        </div>
+    </footer>
+    
 </section>
 
 </body>

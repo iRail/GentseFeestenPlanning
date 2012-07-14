@@ -7,6 +7,13 @@
         <link rel="stylesheet" href="css/leaflet.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
 		<link rel="stylesheet" href="css/main.css" />
+        <meta property="og:title" content="#GF12 Planner App" />
+<meta property="og:type" content="game" />
+<meta property="og:url" content="http://gf12.be/site.html" />
+<meta property="og:image" content="http://gf12.be/images/logo_home.png" />
+<meta property="og:site_name" content="GF12 Planner App" />
+<meta property="og:description" content="Bekijk de events van de Gentse Feesten 2012, voeg toe aan je planning, zoek live naar toiletten in de buurt op de map, zoek live naar events op de map,... De ultieme survivor kit voor de Gentse Feesten 2012!"/>
+<meta property="fb:admins" content="1280846677" />
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/modernizr.custom.46379.js"></script>
         <!--<link rel="stylesheet" href="leaflet.css" />-->
@@ -73,14 +80,27 @@
 				// Get date to load right events
 				var date = new Date();
 				day_date = date.getDate();
+				var currentTime = date.getHours() 
 				//day_date = 14;
+				
+				// SET CANVAS OF MAP HEIGHT
+				var docheight = $(document).height();
+				var mapTop = $("#livemap").offset().top;
+				var mapheight = docheight - mapTop;
+				$("#livemap").css("height",mapheight+"px");
 				
 				if(day_date >= 14 && day_date <= 23){
 					map = new L.Map(livemap).setView(new L.LatLng(51.050729,3.724022), 13);
 					wax.tilejson('http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp', function(tilejson) {
 					map.addLayer(new wax.leaf.connector(tilejson));
 				});
-					dataDaySet = getEvents2(day_date);
+					if(currentTime < 6){
+						var day_date2 = parseInt(day_date2) - 1;
+						dataDaySet = getEvents2(day_date2);
+					}
+					else{
+						dataDaySet = getEvents2(""+day_date);
+					}
 					getLocation(dataDaySet, 'events');
 				}
 				else{
@@ -88,11 +108,6 @@
 					$("#livemap").css({"background-image":"url('images/nottoday.png')"});
 				}
 				
-				// SET CANVAS OF MAP HEIGHT
-				var docheight = $(document).height();
-				var mapTop = $("#livemap").offset().top;
-				var mapheight = docheight - mapTop;
-				$("#livemap").css("height",mapheight+"px");
 				
 			});
 			
