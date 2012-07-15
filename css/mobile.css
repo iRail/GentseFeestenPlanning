@@ -86,11 +86,16 @@ footer #footercontent{
 }
 
 .icons{
-	width:80%;
+	width:215px;
 	margin:0 auto;
 }
 
 .upperOne{
 	padding-top:0;
 	padding-bottom:5px;
+}
+
+.fb-likeBox{
+	width:300px;
+	margin:0 auto;
 }

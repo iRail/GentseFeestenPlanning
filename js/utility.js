@@ -342,9 +342,11 @@ function setLiveMap(lati, long, data){
 	if(isLive){
 		map.removeLayer(markerHere);
 	}
+	
 	if(isLive == false){
-		map.setView(new L.LatLng(lati,long), 17);
+		map.setView(new L.LatLng(lati,long), 16);
 	}
+
 	
 	var MyIcon = L.Icon.extend({
     	iconUrl : 'images/marker.png',

@@ -82,7 +82,6 @@
 				day_date = date.getDate();
 				var currentTime = date.getHours() 
 				//day_date = 14;
-				
 				// SET CANVAS OF MAP HEIGHT
 				var docheight = $(document).height();
 				var mapTop = $("#livemap").offset().top;
@@ -95,7 +94,7 @@
 					map.addLayer(new wax.leaf.connector(tilejson));
 				});
 					if(currentTime < 6){
-						var day_date2 = parseInt(day_date2) - 1;
+						var day_date2 = parseInt(day_date) - 1;
 						dataDaySet = getEvents2(day_date2);
 					}
 					else{
